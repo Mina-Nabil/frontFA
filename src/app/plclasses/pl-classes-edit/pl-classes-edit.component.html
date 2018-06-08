@@ -1,0 +1,69 @@
+<mat-card>
+  <mat-card-title>Add Class</mat-card-title>
+  <mat-card-subtitle>Simple form for adding/editing new classes</mat-card-subtitle>
+  <form [formGroup]="form" (ngSubmit)="modifyStudent()">
+    <mat-card-content>
+      <div fxLayout="row wrap">
+
+        <input matInput hidden=true [formControl]="form.controls['ID']">
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Class name" formControlName='Name'>
+          </mat-form-field>
+          <small *ngIf="form.controls['Name'].hasError('required') && form.controls['Name'].touched" class="mat-text-warn">You must write a class name.</small>
+          <small *ngIf="form.controls['Name'].hasError('minlength') && form.controls['Name'].touched" class="mat-text-warn">Class name must be at least 2 characters long.</small>
+          <small *ngIf="form.controls['Name'].hasError('maxlength') && form.controls['Name'].touched" class="mat-text-warn">Class name cannot exceed 20 characters.</small>
+        </div>
+      </div>
+
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Description" formControlName='Description' type="Description">
+        </mat-form-field>
+        <small *ngIf="form.controls['Description'].hasError('required') && form.controls['Description'].touched" class="mat-text-warn">You must include an valid Description.</small>
+      </div>
+
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Year (between 1998 and 2100)" [formControl]="form.controls['Year']">
+        </mat-form-field>
+        <small *ngIf="form.controls['Year'].hasError('required') && form.controls['Year'].touched" class="mat-text-warn">You must enter a year.</small>
+        <small *ngIf="form.controls['Year'].hasError('range') && form.controls['Year'].touched" class="mat-text-warn">Year should be between 1998 and 2100.</small>
+      </div>
+
+    </mat-card-content>
+    <hr>
+    <mat-card-actions class="px-1">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>
+<div *ngIf="modifyFailed" >
+<mat-card class="card-widget mat-red">
+  <div mat-card-widget>
+    <div mat-card-float-icon>
+      <mat-icon>notifications</mat-icon>
+    </div>
+    <div class="pl-0">
+      <h2 mat-card-widget-title>Oh No! {{errorMsg}}</h2>
+      <p>Add/Edit Failed</p>
+    </div>
+  </div>
+</mat-card>
+</div>
+
+<div *ngIf="modifySuccess">
+<mat-card class="card-widget mat-teal">
+  <div mat-card-widget>
+    <div mat-card-float-icon>
+      <mat-icon>local_offer</mat-icon>
+    </div>
+    <div class="pl-0">
+      <h2 mat-card-widget-title>Oh Yeah!</h2>
+      <p>Add/Edit Done</p>
+    </div>
+  </div>
+</mat-card>
+</div>

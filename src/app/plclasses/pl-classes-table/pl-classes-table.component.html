@@ -1,0 +1,14 @@
+<ngx-datatable
+  class="material fullscreen"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="0"
+  [rowHeight]="50"
+  [scrollbarV]="true"
+  [scrollbarH]="true"
+  [rows]="rows">
+  <ngx-datatable-column name="ID" [width]="80" prop="CLSS_ID"></ngx-datatable-column>
+  <ngx-datatable-column name="Name" [width]="300" prop="CLSS_NAME"></ngx-datatable-column>
+  <ngx-datatable-column name="Description" [width]="500" prop="CLSS_DESC"></ngx-datatable-column>
+  <ngx-datatable-column name="Year" [width]="300" prop="CLSS_YEAR"></ngx-datatable-column>
+</ngx-datatable>
