@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ClassService } from 'src/app/class.service';
+import { ClassService } from 'src/app/resources/class.service';
 
 
 export interface BadgeItem {

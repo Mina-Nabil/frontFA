@@ -1,5 +1,24 @@
 import { NgModule } from '@angular/core';
+
+//Table Imports
 import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
+//Form imports
+import {
+  MatCardModule,
+  MatIconModule,
+  MatRadioModule,
+  MatButtonModule,
+  MatProgressBarModule,
+  MatToolbarModule,
+  MatSelectModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { QuillModule } from 'ngx-quill';
+
 
 import { Studentroutes } from './students-routing.module';
 import { StudentsTableComponent } from './students-table/students-table.component';
@@ -10,7 +29,21 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(Studentroutes),
+    MatCardModule,
+    MatIconModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatToolbarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    NgxDatatableModule,
+    QuillModule,
+    CommonModule,
+    MatInputModule,
+    MatSelectModule,
+    RouterModule.forChild(Studentroutes)
   ],
   declarations: [StudentsTableComponent, StudentDetailsComponent, StudentProfileComponent]
 })

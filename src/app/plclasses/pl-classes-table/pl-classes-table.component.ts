@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClassService } from '../../class.service';
+import { ClassService } from '../../resources/class.service';
 
 
 @Component({
@@ -10,13 +10,42 @@ import { ClassService } from '../../class.service';
 export class PlClassesTableComponent implements OnInit {
 
   rows = [];
-
+  temp = [];
+  selected: any[] = [];
+  columns = [{
+    name: 'ID',   prop: 'CLSS_ID', width:'20'
+  },{
+    name: 'Name', prop: 'CLSS_NAME', width: '200'
+  },{
+    name: 'Description',  prop: 'CLSS_DESC', width: '500'
+  },{
+    name: 'Year', prop: 'CLSS_YEAR', width: '180'
+  }];
 
   constructor(private _classService : ClassService) {
-    this._classService.getClasses().subscribe(data => this.rows = data)
+    this._classService.getClasses().subscribe(data => {
+      this.temp = [...data];
+      this.rows = data;
+    })
   }
 
   ngOnInit() {
   }
+
+  updateFilter(event) {
+  const val = event.target.value.toLowerCase();
+  // filter our data
+  const temp = this.temp.filter(function(d) {
+    return d.CLSS_NAME.toLowerCase().indexOf(val) !== -1 || !val;
+  });
+  // update the rows
+  this.rows = temp;
+}
+
+  onSelect(event) {
+    window.location.href = 'classes/edit/' + event.selected[0].CLSS_ID;
+  }
+
+  onActivate(event){}
 
 }

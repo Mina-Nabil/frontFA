@@ -19,14 +19,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuillModule } from 'ngx-quill';
 
 
-import { PLClassesRoutingModule } from './plclasses-routing.module';
 import { PlClassesTableComponent } from './pl-classes-table/pl-classes-table.component';
 import { PlClassesEditComponent } from './pl-classes-edit/pl-classes-edit.component';
+import { PLClassesRoutes } from './plclasses-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    PLClassesRoutingModule,
     MatInputModule,
     NgxDatatableModule,
     MatCardModule,
@@ -38,7 +38,8 @@ import { PlClassesEditComponent } from './pl-classes-edit/pl-classes-edit.compon
     FlexLayoutModule,
     QuillModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(PLClassesRoutes)
   ],
   declarations: [PlClassesTableComponent, PlClassesEditComponent]
 })

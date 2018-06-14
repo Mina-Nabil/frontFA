@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
+
 import { PlClassesTableComponent } from './pl-classes-table/pl-classes-table.component'
 import { PlClassesEditComponent } from './pl-classes-edit/pl-classes-edit.component';
 
-const routes: Routes = [
+export const PLClassesRoutes: Routes = [
   {
     path: 'table',
     component: PlClassesTableComponent,
@@ -15,9 +15,3 @@ const routes: Routes = [
     component: PlClassesEditComponent
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class PLClassesRoutingModule { }

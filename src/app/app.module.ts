@@ -16,7 +16,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { AgmCoreModule } from '@agm/core';
 
-import { StudentsService } from './students.service';
+import { StudentsService } from './resources/students.service';
 
 import {
   MatSidenavModule,
@@ -48,7 +48,7 @@ import {
 
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
-import { ClassService } from './class.service';
+import { ClassService } from './resources/class.service';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -73,7 +73,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective
-  ],
+    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

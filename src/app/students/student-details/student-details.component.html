@@ -1,3 +1,163 @@
-<p>
-  student-details works!
-</p>
+<mat-card>
+  <mat-card-title>Players Form</mat-card-title>
+  <mat-card-subtitle>Simple form for adding/editing players</mat-card-subtitle>
+  <form [formGroup]="form" (ngSubmit)="modifyStudent()">
+    <mat-card-content>
+
+      <div fxLayout="row wrap">
+        <input matInput hidden=true [formControl]="form.controls['StudentID']">
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Enter Player Full Name" formControlName='Full Name'>
+          </mat-form-field>
+          <small *ngIf="form.controls['Full Name'].hasError('required') && form.controls['Full Name'].touched" class="mat-text-warn">You must enter the player name.</small>
+          <small *ngIf="form.controls['Full Name'].hasError('minlength') && form.controls['Full Name'].touched" class="mat-text-warn">Full name must be at least 6 characters long.</small>
+          <small *ngIf="form.controls['Full Name'].hasError('maxlength') && form.controls['Full Name'].touched" class="mat-text-warn">Full name cannot exceed 45 characters.</small>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="BirthDate" formControlName='BirthDate' type="date">
+        </mat-form-field>
+        <small *ngIf="form.controls['BirthDate'].hasError('required') && form.controls['BirthDate'].touched" class="mat-text-warn">You must include an valid BirthDate.</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Player's Class"  formControlName="Clss" name='Clss'>
+            <mat-option *ngFor="let clss of classesObj" [value]="clss">
+              {{ clss.CLSS_NAME }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <small *ngIf="form.controls['Clss'].hasError('required') && form.controls['Clss'].touched" class="mat-text-warn">You must select a class.</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Player's Position"  formControlName="Position" name='Position'>
+            <mat-option *ngFor="let pos of positionsObj" [value]="pos">
+              {{ pos.POST_NAME }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <small *ngIf="form.controls['Position'].hasError('required') && form.controls['Position'].touched" class="mat-text-warn">You must select a position.</small>
+      </div>
+    </div>
+
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Player's Height" formControlName='Height'>
+        </mat-form-field>
+        <small *ngIf="form.controls['Height'].errors?.range && form.controls['Height'].touched" class="mat-text-warn">Height's range is from 70 cm to 250 cm.</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Player's Weight" formControlName='Weight'>
+        </mat-form-field>
+        <small *ngIf="form.controls['Weight'].errors?.range && form.controls['Weight'].touched" class="mat-text-warn">Weight's range is from 20 Kg to 110 Kg.</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Player's Mobile Number" formControlName='Telephone'>
+        </mat-form-field>
+        <small *ngIf="(form.controls['Telephone'].hasError('maxlength') || form.controls['Telephone'].hasError('minlength')) && form.controls['Telephone'].touched" class="mat-text-warn">Mobile number must be 11 characters long</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Enter Player's Previous Club, if exists" formControlName='PrevClub'>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Player's Parent Name" formControlName='ParentName'>
+        </mat-form-field>
+        <small *ngIf="form.controls['ParentName'].hasError('required') && form.controls['ParentName'].touched" class="mat-text-warn">You must enter player's parent name.</small>
+        <small *ngIf="form.controls['ParentName'].hasError('minlength') && form.controls['ParentName'].touched" class="mat-text-warn">Parent's name must be at least 6 characters long.</small>
+        <small *ngIf="form.controls['ParentName'].hasError('maxlength') && form.controls['ParentName'].touched" class="mat-text-warn">Parent's name cannot exceed 45 characters.</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Player's Parent Mobile Number" formControlName='ParentTel'>
+        </mat-form-field>
+        <small *ngIf="form.controls['ParentTel'].hasError('required') && form.controls['ParentTel'].touched" class="mat-text-warn">You must enter player's parent telephone number.</small>
+        <small *ngIf="(form.controls['ParentTel'].hasError('maxlength') || form.controls['ParentTel'].hasError('minlength')) && form.controls['Telephone'].touched" class="mat-text-warn">Mobile number must be 11 characters long</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Another Parent Mobile Number" formControlName='ParentTel2'>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Player's Mentor Name" formControlName='MentorName'>
+        </mat-form-field>
+        <small *ngIf="form.controls['MentorName'].hasError('required') && form.controls['MentorName'].touched" class="mat-text-warn">You must enter player's parent name.</small>
+          </div>
+    </div>
+
+    </mat-card-content>
+    <hr>
+    <mat-card-actions class="px-1">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>
+<div *ngIf="modifyFailed" >
+<mat-card class="card-widget mat-red">
+  <div mat-card-widget>
+    <div mat-card-float-icon>
+      <mat-icon>notifications</mat-icon>
+    </div>
+    <div class="pl-0">
+      <h2 mat-card-widget-title>Oh No! {{errorMsg}}</h2>
+      <p>Add/Edit Failed</p>
+    </div>
+  </div>
+</mat-card>
+</div>
+
+<div *ngIf="modifySuccess">
+<mat-card class="card-widget mat-teal">
+  <div mat-card-widget>
+    <div mat-card-float-icon>
+      <mat-icon>local_offer</mat-icon>
+    </div>
+    <div class="pl-0">
+      <h2 mat-card-widget-title>Oh Yeah!</h2>
+      <p>Add/Edit Done</p>
+    </div>
+  </div>
+</mat-card>
+</div>

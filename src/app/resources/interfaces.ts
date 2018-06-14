@@ -1,10 +1,17 @@
+export interface IClass {
+  CLSS_ID: number,
+  CLSS_NAME: string,
+  CLSS_DESC: string,
+  CLSS_YEAR: number
+}
+
 export interface IStudent {
   STUD_ID: number,
   STUD_NAME: string,
   STUD_TEL: string,
   STUD_BD: Date,
   STUD_PRNT_TEL: string,
-  STUD_CLASS_ID: number,
+  STUD_CLSS_ID: number,
   STUD_PRNT_TELL: string,
   STUD_PRNT_NAME: string,
   STUD_MNTR_NAME: string,
@@ -12,8 +19,18 @@ export interface IStudent {
   STUD_FAV_POS: number,
   STUD_WGHT: number,
   STUD_LGTH: number,
-  CLSS_ID: number,
   CLSS_YEAR: number,
   POST_NAME: string,
-  STUD_ACCS_CODE: string
+  POST_ABB: string
+}
+
+export interface IClassRoute {
+  state :  string,
+  path  :  string
+}
+
+export interface IPosition {
+  POST_ID: number,
+  POST_NAME: string,
+  POST_ABB: string
 }
