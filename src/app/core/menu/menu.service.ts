@@ -38,10 +38,11 @@ export class MenuService {
 
 
   constructor(private _classService: ClassService) {
-    let classesRoutes = [];
+    let PLclassesRoutes = [];
+    let SsclassesRoutes = [];
     this._classService.getClassesRoutes().subscribe(data => {
-                                        classesRoutes = data;
-                                        classesRoutes.push({
+                                        PLclassesRoutes = data.slice();
+                                        PLclassesRoutes.splice(0,0,{
                                           state: 'add',
                                           name: 'Add New Player'
                                         });
@@ -49,8 +50,24 @@ export class MenuService {
                                           state:  'students',
                                           name:   'Players',
                                           type:   'sub',
-                                          icon:   'person',
-                                          children: classesRoutes
+                                          icon:   'sentiment_satisfied_alt',
+                                          children: PLclassesRoutes
+                                        });
+                                        SsclassesRoutes = data.slice();
+                                        SsclassesRoutes.splice(0,0,{
+                                          state: 'add',
+                                          name: 'Add New Session'
+                                        });
+                                        SsclassesRoutes.splice(0,0,{
+                                          state: 'cal',
+                                          name: 'Sessions Calendar'
+                                        });
+                                        MENUITEMS.push({
+                                          state:  'trsessions',
+                                          name:   'Sessions',
+                                          type:   'sub',
+                                          icon:   'fitness_center',
+                                          children: SsclassesRoutes
                                         });
                                       } ,  error => console.log('Error: ', +error));
     MENUITEMS.push({

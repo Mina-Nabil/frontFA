@@ -14,11 +14,16 @@ export class PositionsService {
   private BASEURL : string = 'http://35.177.192.89/ftballAcademy/Api/';
 
   private _allPosURL : string = this.BASEURL + 'getPositions';
+  private _PosURL : string = this.BASEURL + 'getPosition/';
 
   constructor(private http: HttpClient) { }
 
   getPositions(): Observable<IPosition[]>{
    return this.http.get<IPosition[]>(this._allPosURL).catch(this.errorHandler);
+  }
+
+  getPosition(PositionID: number): Observable<IPosition>{
+   return this.http.get<IPosition>(this._PosURL + PositionID).catch(this.errorHandler);
   }
 
   errorHandler(error: HttpErrorResponse){

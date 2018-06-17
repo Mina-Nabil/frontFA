@@ -15,7 +15,9 @@ export class StudentsService {
 
   private _url: string = this.BASEURL + 'getStudents';
   private _ByClassurl: string = this.BASEURL + 'getStudents/';
+  private _ByStudenturl: string = this.BASEURL + 'getStudent/';
   private _Addurl: string = this.BASEURL + 'addStudent';
+  private _Editurl: string = this.BASEURL + 'editStudent/';
 
   constructor(private http: HttpClient) { }
 
@@ -29,8 +31,16 @@ export class StudentsService {
                 .catch(this.errorHandler);
   }
 
+  getStudent(studentID: number): Observable<IStudent> {
+    return this.http.get<IStudent>(this._ByStudenturl + studentID).catch(this.errorHandler);
+  }
+
   addStudent(studentObj: IStudent): Observable<IStudent> {
     return this.http.post<IStudent>(this._Addurl, studentObj).catch(this.errorHandler);
+  }
+
+  editStudent(studentObj: IStudent): Observable<IStudent> {
+    return this.http.post<IStudent>(this._Editurl + studentObj.STUD_ID, studentObj).catch(this.errorHandler);
   }
 
   errorHandler(error: HttpErrorResponse){

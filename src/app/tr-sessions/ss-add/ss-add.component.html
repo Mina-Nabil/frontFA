@@ -1,0 +1,78 @@
+<mat-card>
+  <mat-card-title>Class Form</mat-card-title>
+  <mat-card-subtitle>Simple form for adding/editing new classes</mat-card-subtitle>
+  <form [formGroup]="form" (ngSubmit)="modifySession()">
+    <mat-card-content>
+      <div fxLayout="row wrap">
+
+        <input matInput hidden=true [formControl]="form.controls['ID']">
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Session Description" formControlName='Description'>
+          </mat-form-field>
+          <small *ngIf="form.controls['Description'].hasError('required') && form.controls['Description'].touched" class="mat-text-warn">You must write a description for the session.</small>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap">
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <mat-select placeholder="Session's Classes"  formControlName="Class" name='Class' [multiple]="true">
+              <mat-option *ngFor="let clss of classesObj" [value]="clss.CLSS_ID">
+                {{ clss.CLSS_NAME }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <small *ngIf="form.controls['Class'].hasError('required') && form.controls['Class'].touched" class="mat-text-warn">You must select a class.</small>
+        </div>
+      </div>
+      {{this.forms.controls['Class'].value}}
+      <div fxLayout="row wrap">
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <mat-select placeholder="Session Mentor"  formControlName="Mentor" name='Mentor'>
+              <mat-option *ngFor="let ment of positionsObj" [value]="ment.USER_ID">
+                {{ ment.USER_UNAME }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <small *ngIf="form.controls['Mentor'].hasError('required') && form.controls['Mentor'].touched" class="mat-text-warn">You must select a position.</small>
+        </div>
+      </div>
+
+    </mat-card-content>
+    <hr>
+    <mat-card-actions class="px-1">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>
+<div *ngIf="modifyFailed" >
+<mat-card class="card-widget mat-red">
+  <div mat-card-widget>
+    <div mat-card-float-icon>
+      <mat-icon>notifications</mat-icon>
+    </div>
+    <div class="pl-0">
+      <h2 mat-card-widget-title>Oh No! {{errorMsg}}</h2>
+      <p>Add/Edit Failed</p>
+    </div>
+  </div>
+</mat-card>
+</div>
+
+<div *ngIf="modifySuccess">
+<mat-card class="card-widget mat-teal">
+  <div mat-card-widget>
+    <div mat-card-float-icon>
+      <mat-icon>local_offer</mat-icon>
+    </div>
+    <div class="pl-0">
+      <h2 mat-card-widget-title>Oh Yeah!</h2>
+      <p>Add/Edit Done</p>
+    </div>
+  </div>
+</mat-card>
+</div>

@@ -14,6 +14,9 @@ export const AppRoutes: Routes = [{
   },{
     path: 'classes',
     loadChildren: './plclasses/plclasses.module#PLClassesModule'
+  },{
+    path: 'trsessions',
+    loadChildren: './tr-sessions/tr-sessions.module#TrSessionsModule'
   }]
 },{
   path: '',

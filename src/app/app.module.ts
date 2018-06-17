@@ -49,6 +49,7 @@ import {
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { ClassService } from './resources/class.service';
+import { SessionsService } from './resources/sessions.service';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -108,6 +109,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   providers: [
     { provide: StudentsService,           useClass: StudentsService },
     { provide: ClassService,           useClass: ClassService },
+    { provide: SessionsService,           useClass: SessionsService },
     { provide: PERFECT_SCROLLBAR_CONFIG,  useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
   ],
   bootstrap: [AppComponent]

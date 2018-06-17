@@ -30,7 +30,7 @@
       <div class="mb-1">
         <mat-form-field style="width: 100%">
           <mat-select placeholder="Player's Class"  formControlName="Clss" name='Clss'>
-            <mat-option *ngFor="let clss of classesObj" [value]="clss">
+            <mat-option *ngFor="let clss of classesObj" [value]="clss.CLSS_ID">
               {{ clss.CLSS_NAME }}
             </mat-option>
           </mat-select>
@@ -43,7 +43,7 @@
       <div class="mb-1">
         <mat-form-field style="width: 100%">
           <mat-select placeholder="Player's Position"  formControlName="Position" name='Position'>
-            <mat-option *ngFor="let pos of positionsObj" [value]="pos">
+            <mat-option *ngFor="let pos of positionsObj" [value]="pos.POST_ID">
               {{ pos.POST_NAME }}
             </mat-option>
           </mat-select>

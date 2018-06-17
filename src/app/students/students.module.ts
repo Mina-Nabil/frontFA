@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 //Table Imports
-import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -40,7 +40,6 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
     FlexLayoutModule,
     NgxDatatableModule,
     QuillModule,
-    CommonModule,
     MatInputModule,
     MatSelectModule,
     RouterModule.forChild(Studentroutes)

@@ -45,13 +45,11 @@ export class PlClassesEditComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params: Params) => {
     this.classObj.CLSS_ID = params['ClassID'];
-    if(this.classObj.CLSS_ID != null){
+    if(this.classObj.CLSS_ID){
       this.isEdit = true;
       this._classService.getClass(this.classObj.CLSS_ID).subscribe(data =>
         {
           this.classObj = data;
-          console.log(data);
-          console.log(this.classObj);
           this.form.controls['Name'].setValue(this.classObj.CLSS_NAME);
           this.form.controls['ID'].setValue(this.classObj.CLSS_ID);
           this.form.controls['Year'].setValue(this.classObj.CLSS_YEAR);

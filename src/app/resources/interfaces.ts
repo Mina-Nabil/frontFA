@@ -34,3 +34,18 @@ export interface IPosition {
   POST_NAME: string,
   POST_ABB: string
 }
+
+export interface ISession {
+  SESS_ID: number,
+  SESS_STRT_DATE: Date,
+  SESS_DESC: string,
+  SESS_END_DATE: Date,
+  SESS_USER_ID: number
+}
+
+export interface IUser {
+  USER_ID: number,
+  USER_UNAME: string,
+  USER_FNAME: string,
+  USER_TEL: string,
+}
