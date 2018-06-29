@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionsService } from '../../resources/sessions.service';
+import { ActivatedRoute } from '@angular/router';
+import { Params } from '@angular/router';
 
 @Component({
   selector: 'app-ss-table',
@@ -21,7 +24,18 @@ export class SsTableComponent implements OnInit {
     name: 'Duration',  prop: 'SESS_DUR', width: '200'
   }];
 
-  constructor() { }
+  constructor(private _sessionService : SessionsService, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.classID = params['ClassID'];
+      if(this.classID){
+        this._sessionService.getSessions(this.classID).subscribe(data => {
+          this.temp = [...data];
+          this.rows = data;
+        })
+      }
+    });
+
+   }
 
   ngOnInit() {
   }

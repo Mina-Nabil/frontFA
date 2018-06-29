@@ -96,7 +96,7 @@ export class SsAddComponent implements OnInit {
     if(!this.isEdit){
       this._sessionService.addSession(this.sessionObj, this.chosenClasses).subscribe(data => {
                                                             this.newsessionObj = data;
-                                                            if(this.newsessionObj.SESS_STRT_DATE.getTime() == this.sessionObj.SESS_STRT_DATE.getTime())
+                                                            if(this.newsessionObj.SESS_STRT_DATE == this.sessionObj.SESS_STRT_DATE)
                                                             this.declareSuccess();
                                                             else
                                                             this.declareError('Mismatch Error');
