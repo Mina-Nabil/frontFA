@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ISession, IClass, IUser } from '../../resources/interfaces';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormGroup  } from '@angular/forms';
 import { ClassService } from '../../resources/class.service';
 import { SessionsService } from '../../resources/sessions.service';
-import { ActivatedRoute } from '@angular/router';
-import { Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
-import { Params } from '@angular/router';
 import { UsersService } from '../../resources/users.service';
 
 @Component({
@@ -30,7 +27,7 @@ export class SsAddComponent implements OnInit {
   public modifySuccess: boolean;
   public errorMsg: string ;
 
-  public chosenClasses: IClass[] ;
+  public chosenClasses: number[] ;
 
   public classesObj: IClass[] ;
 
@@ -52,7 +49,7 @@ export class SsAddComponent implements OnInit {
     EndDate: [this.sessionObj.SESS_END_DATE, Validators.compose([Validators.required, CustomValidators.date])],
     Description: [this.sessionObj.SESS_DESC, Validators.compose([Validators.required])],
     Mentor: [null, Validators.compose([Validators.required])],
-    Class: [null, Validators.compose([Validators.required])],
+    SessClass: [null, Validators.compose([Validators.required])],
     });
 
     this._classService.getClasses().subscribe(data =>  this.classesObj = data,
@@ -78,10 +75,13 @@ export class SsAddComponent implements OnInit {
 
     }
     });
+
   }
 
   modifySession(){
 
+    this.chosenClasses = this.form.controls['SessClass'].value;
+    console.log(this.chosenClasses)
     this.sessionObj = {
       SESS_STRT_DATE: this.form.controls['StartDate'].value,
       SESS_ID: this.form.controls['ID'].value,
@@ -90,16 +90,16 @@ export class SsAddComponent implements OnInit {
       SESS_USER_ID: this.form.controls['Mentor'].value,
     }
 
-    this.chosenClasses = this.form.controls['Class'].value;
-    
+    this.chosenClasses = this.form.controls['SessClass'].value;
+
 
     if(!this.isEdit){
       this._sessionService.addSession(this.sessionObj, this.chosenClasses).subscribe(data => {
                                                             this.newsessionObj = data;
-                                                            if(this.newsessionObj.SESS_STRT_DATE != this.sessionObj.SESS_STRT_DATE)
-                                                            this.declareError('Mismatch Error');
-                                                            else
+                                                            if(this.newsessionObj.SESS_STRT_DATE.getTime() == this.sessionObj.SESS_STRT_DATE.getTime())
                                                             this.declareSuccess();
+                                                            else
+                                                            this.declareError('Mismatch Error');
                                                           },
                                                            error => {
                                                              this.errorMsg = error;
@@ -109,10 +109,10 @@ export class SsAddComponent implements OnInit {
     }else{
       this._sessionService.editSession(this.sessionObj, this.chosenClasses).subscribe(data => {
                                                             this.newsessionObj = data;
-                                                            if(this.newsessionObj.SESS_STRT_DATE != this.sessionObj.SESS_STRT_DATE)
-                                                            this.declareError('Mismatch Error');
-                                                            else
+                                                            if(this.newsessionObj.SESS_STRT_DATE == this.sessionObj.SESS_STRT_DATE)
                                                             this.declareSuccess();
+                                                            else
+                                                            this.declareError('Mismatch Error');
                                                           },
                                                            error => {
                                                              this.errorMsg = error;

@@ -34,11 +34,14 @@ export class SessionsService {
     return this.http.get<ISession>(this._getSessionUrl + sessID).catch(this.errorHandler);
   }
 
-  addSession(sessionObj: ISession, classes: IClass[]) : Observable<ISession>{
-    return this.http.get<ISession>(this._addSessionUrl ).catch(this.errorHandler);
+  addSession(sessionObj: ISession, classes: number[]) : Observable<ISession>{
+    let temp : any[] = [];
+    temp.push(sessionObj);
+    temp.push({'classes' : classes})
+    return this.http.post<ISession>(this._addSessionUrl, temp ).catch(this.errorHandler);
   }
 
-  editSession(sessionObj: ISession, classes: IClass[]) : Observable<ISession>{
+  editSession(sessionObj: ISession, classes: number[]) : Observable<ISession>{
     return this.http.get<ISession>(this._editSessionUrl + sessionObj.SESS_ID ).catch(this.errorHandler);
   }
 

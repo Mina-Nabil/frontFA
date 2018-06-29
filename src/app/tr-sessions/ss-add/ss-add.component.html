@@ -1,6 +1,6 @@
 <mat-card>
-  <mat-card-title>Class Form</mat-card-title>
-  <mat-card-subtitle>Simple form for adding/editing new classes</mat-card-subtitle>
+  <mat-card-title>Sessions Form</mat-card-title>
+  <mat-card-subtitle>Simple form for adding/editing new sessions</mat-card-subtitle>
   <form [formGroup]="form" (ngSubmit)="modifySession()">
     <mat-card-content>
       <div fxLayout="row wrap">
@@ -17,22 +17,43 @@
 
       <div fxLayout="row wrap">
         <div class="mb-1">
+          <label>Start Date</label><br>
+          <mat-form-field style='width: 120%' >
+            <input matInput formControlName='StartDate' name='StartDate' type='datetime-local' />
+          </mat-form-field>
+          <small *ngIf="form.controls['StartDate'].hasError('required') && form.controls['StartDate'].touched"  class="mat-text-warn">Please enter a start date</small>
+        </div>
+      </div>
+
+      <div fxLayout='row wrap'>
+        <div class="mb-1">
+          <label>End Date</label><br>
+          <mat-form-field style='width: 120%' >
+            <input matInput formControlName='EndDate' name='StartDate' type='datetime-local' />
+          </mat-form-field>
+          <small *ngIf="form.controls['EndDate'].hasError('required') && form.controls['EndDate'].touched" class='mat-text-warn'>Please enter an end date </small>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap">
+        <div class="mb-1">
           <mat-form-field style="width: 100%">
-            <mat-select placeholder="Session's Classes"  formControlName="Class" name='Class' [multiple]="true">
+            <mat-select placeholder="Session's Classes"  formControlName="SessClass" name='SessClass' [multiple]="true">
               <mat-option *ngFor="let clss of classesObj" [value]="clss.CLSS_ID">
                 {{ clss.CLSS_NAME }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <small *ngIf="form.controls['Class'].hasError('required') && form.controls['Class'].touched" class="mat-text-warn">You must select a class.</small>
+          <small *ngIf="form.controls['SessClass'].hasError('required') && form.controls['SessClass'].touched" class="mat-text-warn">You must select a class.</small>
         </div>
       </div>
-      {{this.forms.controls['Class'].value}}
+      {{this.form.controls['SessClass'].value}}
+
       <div fxLayout="row wrap">
         <div class="mb-1">
           <mat-form-field style="width: 100%">
             <mat-select placeholder="Session Mentor"  formControlName="Mentor" name='Mentor'>
-              <mat-option *ngFor="let ment of positionsObj" [value]="ment.USER_ID">
+              <mat-option *ngFor="let ment of usersObj" [value]="ment.USER_ID">
                 {{ ment.USER_UNAME }}
               </mat-option>
             </mat-select>
