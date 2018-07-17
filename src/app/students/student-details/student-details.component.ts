@@ -29,6 +29,7 @@ export class StudentDetailsComponent implements OnInit {
           STUD_PRNT_TEL: null,
           STUD_MNTR_NAME: null,
           STUD_PREV_CLUB: null,
+          STUD_BARCODE: null,
           STUD_PRNT_NAME: null,
           STUD_PRNT_TELL: null,
           POST_NAME: null,
@@ -69,6 +70,7 @@ export class StudentDetailsComponent implements OnInit {
       Weight:     [this.studentObj.STUD_WGHT,     Validators.compose([CustomValidators.range([15, 110])])],
       Height:     [this.studentObj.STUD_LGTH,     Validators.compose([CustomValidators.range([70, 250])])],
       Position:   [this.studentObj.STUD_FAV_POS,  Validators.compose([Validators.required])],
+      BarCode:    [this.studentObj.STUD_BARCODE],
       Clss:       [this.studentObj.STUD_CLSS_ID,  Validators.compose([Validators.required])],
       ParentTel:  [this.studentObj.STUD_PRNT_TEL, Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
       ParentTel2: [this.studentObj.STUD_PRNT_TELL,Validators.compose([Validators.minLength(11), Validators.maxLength(11)])],
@@ -102,6 +104,7 @@ export class StudentDetailsComponent implements OnInit {
             this.form.controls['ParentName'].setValue(this.studentObj.STUD_NAME);
             this.form.controls['MentorName'].setValue(this.studentObj.STUD_MNTR_NAME);
             this.form.controls['PrevClub'].setValue(this.studentObj.STUD_PREV_CLUB);
+            this.form.controls['BarCode'].setValue(this.studentObj.STUD_BARCODE);
             this.form.controls['Clss'].setValue(this.studentObj.STUD_CLSS_ID);
             this.form.controls['Position'].setValue(this.studentObj.STUD_FAV_POS);
 
@@ -128,6 +131,7 @@ export class StudentDetailsComponent implements OnInit {
         STUD_PRNT_TELL: this.form.controls['ParentTel2'].value,
         STUD_PRNT_NAME: this.form.controls['ParentName'].value,
         STUD_MNTR_NAME: this.form.controls['MentorName'].value,
+        STUD_BARCODE: this.form.controls['BarCode'].value,
         STUD_PREV_CLUB: this.form.controls['PrevClub'].value,
         CLSS_YEAR: null,
         POST_NAME: null,

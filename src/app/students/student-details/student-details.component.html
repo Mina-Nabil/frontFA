@@ -91,6 +91,14 @@
     <div fxLayout="row wrap">
       <div class="mb-1">
         <mat-form-field style="width: 100%">
+          <input matInput placeholder="Enter the Barcode ID" formControlName='BarCode'>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
           <input matInput placeholder="Player's Parent Name" formControlName='ParentName'>
         </mat-form-field>
         <small *ngIf="form.controls['ParentName'].hasError('required') && form.controls['ParentName'].touched" class="mat-text-warn">You must enter player's parent name.</small>

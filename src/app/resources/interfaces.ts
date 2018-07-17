@@ -16,6 +16,7 @@ export interface IStudent {
   STUD_PRNT_NAME: string,
   STUD_MNTR_NAME: string,
   STUD_PREV_CLUB: string,
+  STUD_BARCODE: string,
   STUD_FAV_POS: number,
   STUD_WGHT: number,
   STUD_LGTH: number,

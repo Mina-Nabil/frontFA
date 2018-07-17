@@ -15,7 +15,7 @@ export class SsTableComponent implements OnInit {
   temp = [];
   selected: any[] = [];
   columns = [{
-    name: 'Date',  prop: 'SESS_STRT_DATE', width: '200'
+    name: 'Start Date',  prop: 'SESS_STRT_DATE', width: '200'
   },{
     name: 'Description', prop: 'SESS_DESC', width: '200'
   },{

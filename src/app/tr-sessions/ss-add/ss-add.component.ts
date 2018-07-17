@@ -96,7 +96,7 @@ export class SsAddComponent implements OnInit {
     if(!this.isEdit){
       this._sessionService.addSession(this.sessionObj, this.chosenClasses).subscribe(data => {
                                                             this.newsessionObj = data;
-                                                            if(this.newsessionObj.SESS_STRT_DATE == this.sessionObj.SESS_STRT_DATE)
+                                                            if(this.newsessionObj.SESS_DESC == this.sessionObj.SESS_DESC)
                                                             this.declareSuccess();
                                                             else
                                                             this.declareError('Mismatch Error');
@@ -109,7 +109,7 @@ export class SsAddComponent implements OnInit {
     }else{
       this._sessionService.editSession(this.sessionObj, this.chosenClasses).subscribe(data => {
                                                             this.newsessionObj = data;
-                                                            if(this.newsessionObj.SESS_STRT_DATE == this.sessionObj.SESS_STRT_DATE)
+                                                            if(this.newsessionObj.SESS_DESC == this.sessionObj.SESS_DESC)
                                                             this.declareSuccess();
                                                             else
                                                             this.declareError('Mismatch Error');

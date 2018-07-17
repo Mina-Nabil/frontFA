@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { ISession, IClass } from './interfaces'
 import { HttpErrorResponse } from '@angular/common/http';
+import { CalendarEvent } from 'angular-calendar';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class SessionsService {
 
   private _getSessionsUrl : string = this.BASEURL + 'getSessions/';
   private _getSessionUrl : string = this.BASEURL + 'getSession/';
+  private _getSessionCalUrl : string = this.BASEURL + 'getSession_limit/';
   private _getAllSessionsUrl : string = this.BASEURL + 'getAllSessions/';
   private _addSessionUrl : string = this.BASEURL + 'addSession/';
   private _editSessionUrl : string = this.BASEURL + 'editSession/';
@@ -32,6 +34,10 @@ export class SessionsService {
 
   getSession(sessID: number) : Observable<ISession>{ //1 Session
     return this.http.get<ISession>(this._getSessionUrl + sessID).catch(this.errorHandler);
+  }
+
+  getCalSessions(months: number) : Observable<CalendarEvent[]> {
+    return this.http.get<CalendarEvent[]>(this._getSessionCalUrl + months).catch(this.errorHandler);
   }
 
   addSession(sessionObj: ISession, classes: number[]) : Observable<ISession>{

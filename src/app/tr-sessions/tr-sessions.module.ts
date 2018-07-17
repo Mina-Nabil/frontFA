@@ -30,7 +30,7 @@ import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
 
 import { TRSessionsRoutes } from './tr-sessions-routing.module';
 import { SsAddComponent } from './ss-add/ss-add.component';
-import { SsCalendarComponent, CalendarDialogComponent } from './ss-calendar/ss-calendar.component';
+import { SsCalendarComponent } from './ss-calendar/ss-calendar.component';
 import { SsTableComponent } from './ss-table/ss-table.component';
 import { RouterModule } from '@angular/router';
 
@@ -63,6 +63,6 @@ import { RouterModule } from '@angular/router';
     MatTabsModule,
     MatDialogModule
   ],
-  declarations: [SsAddComponent, SsCalendarComponent, SsTableComponent, CalendarDialogComponent]
+  declarations: [SsAddComponent, SsCalendarComponent, SsTableComponent]
 })
 export class TrSessionsModule { }

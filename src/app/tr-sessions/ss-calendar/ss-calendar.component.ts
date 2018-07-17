@@ -1,26 +1,6 @@
 import { Component, ChangeDetectionStrategy, Inject, ViewChild, TemplateRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
 
-@Component({
-  selector: 'app-calendar-dialog',
-  template: `
-  <h5 class="mt-0">Event action occurred</h5>
-  <div>
-    Action:
-    <pre>{{ data?.action }}</pre>
-  </div>
-  <div>
-    Event:
-    <pre>{{ data?.event | json }}</pre>
-  </div>
-  <button md-button type="button" (click)="dialogRef.close()">Close dialog</button>`
-})
-export class CalendarDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<CalendarDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-}
-
 
 
 import {
@@ -41,21 +21,50 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
+import { SessionsService } from '../../resources/sessions.service';
 
-const colors: any = {
-  red: {
+
+let colors : any = [
+  {
+    name: 'red',
+    id: 0,
     primary: '#ad2121',
     secondary: '#FAE3E3'
   },
-  blue: {
+   {
+    name: 'blue',
+    id: 1,
     primary: '#1e90ff',
     secondary: '#D1E8FF'
   },
-  yellow: {
+   {
+    name: 'yellow',
+    id: 2,
     primary: '#e3bc08',
     secondary: '#FDF1BA'
+  },
+   {
+    name: 'green',
+    id: 3,
+    primary: '#29AB87',
+    secondary: '#29AB87',
+  },{
+    name: 'pink',
+    id: 4,
+    primary: '#F52887',
+    secondary: '#F52887'
+  },{
+    name: 'indigo',
+    id: 5,
+    primary: '#4B0082',
+    secondary: '#4B0082'
+  },{
+    name: 'black',
+    id: 6,
+    primary: '#000000',
+    secondary: '#000000'
   }
-};
+];
 
 @Component({
   selector: 'app-ss-calendar',
@@ -65,7 +74,6 @@ const colors: any = {
 })
 export class SsCalendarComponent {
 
-  dialogRef: MatDialogRef<CalendarDialogComponent>;
   lastCloseResult: string;
   actionsAlignment: string;
   config: MatDialogConfig = {
@@ -94,53 +102,26 @@ export class SsCalendarComponent {
     event: CalendarEvent
   };
 
-  actions: CalendarEventAction[] = [{
-    label: '<i class="editButton"></i>',
-    onClick: ({event}: {event: CalendarEvent}): void => {
-      this.handleEvent('Edited', event);
-    }
-  }, {
-    label: '<i class="deleteButton"></i>',
-    onClick: ({event}: {event: CalendarEvent}): void => {
-      this.events = this.events.filter(iEvent => iEvent !== event);
-      this.handleEvent('Deleted', event);
-    }
-  }];
-
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [{
-    start: subDays(startOfDay(new Date()), 1),
-    end: addDays(new Date(), 1),
-    title: 'A 3 day event',
-    color: colors.red,
-    actions: this.actions
-  }, {
-    start: startOfDay(new Date()),
-    title: 'An event with no end date',
-    color: colors.yellow,
-    actions: this.actions
-  }, {
-    start: subDays(endOfMonth(new Date()), 3),
-    end: addDays(endOfMonth(new Date()), 3),
-    title: 'A long event that spans 2 months',
-    color: colors.blue
-  }, {
-    start: addHours(startOfDay(new Date()), 2),
-    end: new Date(),
-    title: 'A draggable and resizable event',
-    color: colors.yellow,
-    actions: this.actions,
-    resizable: {
-      beforeStart: true,
-      afterEnd: true
-    },
-    draggable: true
-  }];
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen = true;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private _sessionService: SessionsService) {
+
+    this._sessionService.getCalSessions(2).subscribe(data => {
+      for(let event of data){
+        this.events.push({
+          end : new Date (event['end']),
+          start : new Date (event['start']),
+          title : event['title'],
+          color: this.getColor(event['color'])
+        })
+      }
+    } );
+
+  }
 
   dayClicked({date, events}: {date: Date, events: CalendarEvent[]}): void {
 
@@ -157,22 +138,6 @@ export class SsCalendarComponent {
     }
   }
 
-  eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
-    event.start = newStart;
-    event.end = newEnd;
-    this.handleEvent('Dropped or resized', event);
-    this.refresh.next();
-  }
-
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.config.data = {event, action};
-    this.dialogRef = this.dialog.open(CalendarDialogComponent, this.config);
-
-    this.dialogRef.afterClosed().subscribe((result: string) => {
-      this.lastCloseResult = result;
-      this.dialogRef = null;
-    });
-  }
 
   addEvent(): void {
     this.events.push({
@@ -187,6 +152,14 @@ export class SsCalendarComponent {
       }
     });
     this.refresh.next();
+  }
+
+  getColor(id): any {
+
+    for(let color of colors){
+
+    if(id == color.id) return color;
+    }
   }
 
 }
