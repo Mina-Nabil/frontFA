@@ -130,7 +130,7 @@ export class SsCalendarComponent {
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
         events.length === 0
       ) {
-        this.activeDayIsOpen = false;
+        this.activeDayIsOpen = false
       } else {
         this.activeDayIsOpen = true;
         this.viewDate = date;
@@ -138,21 +138,6 @@ export class SsCalendarComponent {
     }
   }
 
-
-  addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      }
-    });
-    this.refresh.next();
-  }
 
   getColor(id): any {
 

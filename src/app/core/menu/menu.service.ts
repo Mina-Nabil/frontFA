@@ -43,6 +43,10 @@ export class MenuService {
     this._classService.getClassesRoutes().subscribe(data => {
                                         PLclassesRoutes = data.slice();
                                         PLclassesRoutes.splice(0,0,{
+                                          state: 'all',
+                                          name: 'Show All Players'
+                                        });
+                                        PLclassesRoutes.splice(0,0,{
                                           state: 'add',
                                           name: 'Add New Player'
                                         });

@@ -30,12 +30,16 @@ export class StudentDetailsComponent implements OnInit {
           STUD_MNTR_NAME: null,
           STUD_PREV_CLUB: null,
           STUD_BARCODE: null,
+          STUD_ACCS_CODE: null,
+          STUD_SINCE: null,
           STUD_PRNT_NAME: null,
           STUD_PRNT_TELL: null,
           POST_NAME: null,
           POST_ABB: null,
           CLSS_YEAR: null
         };
+
+    public profileLink: string;
 
     public classesObj: IClass[] ;
 
@@ -70,7 +74,8 @@ export class StudentDetailsComponent implements OnInit {
       Weight:     [this.studentObj.STUD_WGHT,     Validators.compose([CustomValidators.range([15, 110])])],
       Height:     [this.studentObj.STUD_LGTH,     Validators.compose([CustomValidators.range([70, 250])])],
       Position:   [this.studentObj.STUD_FAV_POS,  Validators.compose([Validators.required])],
-      BarCode:    [this.studentObj.STUD_BARCODE],
+      BarCode:    [this.studentObj.STUD_BARCODE,  Validators.compose([Validators.required])],
+      AccessCode:    [this.studentObj.STUD_BARCODE, Validators.compose([Validators.required])],
       Clss:       [this.studentObj.STUD_CLSS_ID,  Validators.compose([Validators.required])],
       ParentTel:  [this.studentObj.STUD_PRNT_TEL, Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
       ParentTel2: [this.studentObj.STUD_PRNT_TELL,Validators.compose([Validators.minLength(11), Validators.maxLength(11)])],
@@ -91,7 +96,7 @@ export class StudentDetailsComponent implements OnInit {
 
         this._studentsService.getStudent(this.studentObj.STUD_ID).subscribe(data =>
           {
-            console.log(this.studentObj);
+
             this.studentObj = data;
             this.form.controls['Full Name'].setValue(this.studentObj.STUD_NAME);
             this.form.controls['StudentID'].setValue(this.studentObj.STUD_ID);
@@ -101,13 +106,14 @@ export class StudentDetailsComponent implements OnInit {
             this.form.controls['Height'].setValue(this.studentObj.STUD_LGTH);
             this.form.controls['ParentTel'].setValue(this.studentObj.STUD_TEL);
             this.form.controls['ParentTel2'].setValue(this.studentObj.STUD_PRNT_TELL);
-            this.form.controls['ParentName'].setValue(this.studentObj.STUD_NAME);
+            this.form.controls['ParentName'].setValue(this.studentObj.STUD_PRNT_NAME);
             this.form.controls['MentorName'].setValue(this.studentObj.STUD_MNTR_NAME);
             this.form.controls['PrevClub'].setValue(this.studentObj.STUD_PREV_CLUB);
             this.form.controls['BarCode'].setValue(this.studentObj.STUD_BARCODE);
+            this.form.controls['AccessCode'].setValue(this.studentObj.STUD_ACCS_CODE);
             this.form.controls['Clss'].setValue(this.studentObj.STUD_CLSS_ID);
             this.form.controls['Position'].setValue(this.studentObj.STUD_FAV_POS);
-
+            this.profileLink = '/students/profile/' + this.studentObj.STUD_ID;
         },error => this.declareError('Loading Error'));
 
 
@@ -132,6 +138,8 @@ export class StudentDetailsComponent implements OnInit {
         STUD_PRNT_NAME: this.form.controls['ParentName'].value,
         STUD_MNTR_NAME: this.form.controls['MentorName'].value,
         STUD_BARCODE: this.form.controls['BarCode'].value,
+        STUD_ACCS_CODE: this.form.controls['AccessCode'].value,
+        STUD_SINCE: new Date(Date.now()),
         STUD_PREV_CLUB: this.form.controls['PrevClub'].value,
         CLSS_YEAR: null,
         POST_NAME: null,
@@ -167,6 +175,16 @@ export class StudentDetailsComponent implements OnInit {
        }
 
 
+    }
+
+    generateAccessCode(){
+
+      let $BarCode = this.form.controls['BarCode'].value;
+      let $ParentTel = this.form.controls['ParentTel'].value;
+
+      let $AccessCode = $BarCode + '-' + $ParentTel + '-' + Math.floor(Math.random() * 1000 );
+
+      this.form.controls['AccessCode'].setValue($AccessCode);
     }
 
     declareError(errorMsg: string): any {

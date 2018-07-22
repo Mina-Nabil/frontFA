@@ -1,3 +1,130 @@
-<p>
-  student-profile works!
-</p>
+<div fxLayout="row wrap" fxFlex="100%">
+  <div fxLayout="row wrap" fxFlex.gt-sm="45%" fxFlex.gt-xs="100">
+
+
+  <div fxFlex="100">
+      <mat-card>
+        <mat-card-content class="text-xs-center">
+          <div fxLayout="column"  fxLayoutAlign="center center" class="mt-1">
+
+            <div fxFlex>
+              <img src="assets/images/face1.jpg" class="radius-circle">
+            </div>
+            <div fxFlex>
+
+            </div>
+          </div>
+          <p class="mb-1">
+            <a href="" class="block text-lg">{{this.studentObj.STUD_NAME}}</a>
+            <span class="mat-text-muted">{{this.studentObj.POST_NAME}}</span>
+          </p>
+
+          <div fxLayout="row wrap" class="mt-1 text-uppercase">
+            <div fxFlex="33.33%">
+              <h2 class="mt-0 mb-0">{{this.studentObj.CLSS_NAME}}</h2>
+              <p class="mt-0 mb-0 text-md mat-text-muted">Class</p>
+            </div>
+            <div fxFlex="33.33%">
+              <h2 class="mt-0 mb-0">{{this.age}}</h2>
+              <p class="mt-0 mb-0 text-md mat-text-muted">Age</p>
+            </div>
+            <div fxFlex="33.33%">
+              <h2 class="mt-0 mb-0">{{this.studentObj.STUD_SINCE}}</h2>
+              <p class="mt-0 mb-0 text-md mat-text-muted">Since</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <div fxFlex="100">
+      <div fxLayout="column wrap" >
+        <mat-card>
+          <div fxLayout="row wrap" >
+          <div fxFlex=75%>
+          <mat-card-title>{{this.studentObj.STUD_NAME}}</mat-card-title>
+          <mat-card-subtitle>Student Details</mat-card-subtitle>
+        </div>
+        <div fxFlex="20%" >
+          <a routerLink={{this.editLink}} fxLayoutAlign=right> <button mat-raised-button color='accent'>Edit</button></a>
+          <!-- editURL bayez -->
+        </div>
+      </div>
+          <hr>
+          <mat-list>
+            <mat-list-item>
+              <h3 matLine>Telephone Number</h3>
+              <p matLine>{{this.studentObj.STUD_TEL}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Parent Name</h3>
+              <p matLine>{{this.studentObj.STUD_PRNT_NAME}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Parent Telephone Number</h3>
+              <p matLine>{{this.studentObj.STUD_PRNT_TEL}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Parent Telephone Number2</h3>
+              <p matLine>{{this.studentObj.STUD_PRNT_TELL}}</p>
+            </mat-list-item>
+
+            <mat-list-item>
+              <h3 matLine>Height</h3>
+              <p matLine>{{this.studentObj.STUD_LGTH}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Weight</h3>
+              <p matLine>{{this.studentObj.STUD_WGHT}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Birth Date</h3>
+              <p matLine>{{this.studentObj.STUD_BD}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Mentor Name</h3>
+              <p matLine>{{this.studentObj.STUD_MNTR_NAME}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Previous Clubs</h3>
+              <p matLine>{{this.studentObj.STUD_PREV_CLUB}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>ID Number(Barcode)</h3>
+              <p matLine>{{this.studentObj.STUD_BARCODE}}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Access Code</h3>
+              <p matLine>{{this.studentObj.STUD_ACCS_CODE}}</p>
+            </mat-list-item>
+            </mat-list>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+    <div fxLayout="row wrap" fxFlex.gt-sm="50%" fxFlex.gt-xs="100">
+
+      <div fxFlex="99.5%">
+    		<mat-card>
+          <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+            Total Classes &nbsp; <span class="font-weight-bold mat-text-primary">40</span>
+            <span fxFlex></span>
+            <button mat-icon-button mat-button-sm [matMenuTriggerFor]="card1" aria-label="Open card menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </mat-card-subtitle>
+
+    			<mat-card-content>
+            <canvas height="200" baseChart class="chart"
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [colors]="chartColors"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"></canvas>
+          </mat-card-content>
+    		</mat-card>
+    	</div>
+</div>

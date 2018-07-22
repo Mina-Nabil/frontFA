@@ -36,6 +36,11 @@ export class StudentsTableComponent implements OnInit {
           this.temp = [...data];
           this.rows = data;
         });
+      } else if(this.classID == null){
+        this._studentsService.getAllStudents().subscribe(data => {
+          this.temp = [...data];
+          this.rows = data;
+        })
       }
       });
   }

@@ -13,11 +13,15 @@ import {
   MatButtonModule,
   MatProgressBarModule,
   MatToolbarModule,
-  MatSelectModule } from '@angular/material';
+  MatMenuModule,
+  MatSelectModule,
+  MatListModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuillModule } from 'ngx-quill';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 
 
 import { Studentroutes } from './students-routing.module';
@@ -30,9 +34,12 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
   imports: [
     CommonModule,
     MatCardModule,
+    MatMenuModule,
+    MatListModule,
     MatIconModule,
     MatRadioModule,
     MatButtonModule,
+    ChartsModule,
     MatProgressBarModule,
     MatToolbarModule,
     FormsModule,

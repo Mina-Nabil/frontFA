@@ -88,13 +88,7 @@
       </div>
     </div>
 
-    <div fxLayout="row wrap">
-      <div class="mb-1">
-        <mat-form-field style="width: 100%">
-          <input matInput placeholder="Enter the Barcode ID" formControlName='BarCode'>
-        </mat-form-field>
-      </div>
-    </div>
+
 
     <div fxLayout="row wrap">
       <div class="mb-1">
@@ -130,15 +124,43 @@
         <mat-form-field style="width: 100%">
           <input matInput placeholder="Player's Mentor Name" formControlName='MentorName'>
         </mat-form-field>
-        <small *ngIf="form.controls['MentorName'].hasError('required') && form.controls['MentorName'].touched" class="mat-text-warn">You must enter player's parent name.</small>
+        <small *ngIf="form.controls['MentorName'].hasError('required') && form.controls['MentorName'].touched" class="mat-text-warn">You must enter player's Mentor name.</small>
           </div>
     </div>
 
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Enter the Barcode ID" formControlName='BarCode'>
+        </mat-form-field>
+        <small *ngIf="form.controls['BarCode'].hasError('required') && form.controls['BarCode'].touched" class="mat-text-warn">You must enter player's parent telephone number.</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Enter the Access Code" formControlName='AccessCode'>
+          </mat-form-field>
+        <small *ngIf="form.controls['AccessCode'].hasError('required') && form.controls['AccessCode'].touched" class="mat-text-warn">You must enter player's parent telephone number.</small>
+      </div>
+      <div class="mb-1">
+      <button mat-raised-button color='link' (click)=generateAccessCode() >Generate Code</button>
+    </div>
+  </div>
+
     </mat-card-content>
     <hr>
+    <div fxLayout='row wrap'>
     <mat-card-actions class="px-1">
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
     </mat-card-actions>
+    <div *ngIf='this.profileLink'>
+      <mat-card-actions class="px-1">
+    <a routerLink={{this.profileLink}} ><button mat-raised-button color='link'>Back</button></a>
+  </mat-card-actions>
+  </div>
+</div>
   </form>
 
 </mat-card>

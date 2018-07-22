@@ -9,6 +9,9 @@ export const Studentroutes: Routes = [
     path: 'add',
     component: StudentDetailsComponent,
   },{
+    path: 'all',
+    component: StudentsTableComponent,
+  },{
     path: 'profile/:StudentID',
     component: StudentProfileComponent,
   },{
