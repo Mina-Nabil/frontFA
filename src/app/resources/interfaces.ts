@@ -52,3 +52,10 @@ export interface IUser {
   USER_FNAME: string,
   USER_TEL: string,
 }
+
+export interface IStudentChart {
+  Duration_A: number,
+  Duration_T: number,
+  Attended: number[],
+  Available: number[]
+}

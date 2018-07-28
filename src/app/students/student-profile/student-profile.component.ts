@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IStudent } from '../../resources/interfaces';
+import { CommonModule, Time } from '@angular/common';
+import { IStudent, IStudentChart } from '../../resources/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { StudentsService } from '../../resources/students.service';
+import { SessionsService } from '../../resources/sessions.service';
 
 @Component({
   selector: 'app-student-profile',
@@ -10,7 +11,6 @@ import { StudentsService } from '../../resources/students.service';
   styleUrls: ['./student-profile.component.scss']
 })
 export class StudentProfileComponent implements OnInit {
-
 
   public studentObj: IStudent = {
         STUD_ID: null,
@@ -33,6 +33,7 @@ export class StudentProfileComponent implements OnInit {
         POST_ABB: null,
         CLSS_YEAR: null
       };
+
   age: number;
   editLink: string;
 
@@ -44,19 +45,81 @@ export class StudentProfileComponent implements OnInit {
   }
 };
 
+  public chart1Obj: IStudentChart = {
+    Duration_A: 0,
+    Duration_T: 0,
+    Attended: null,
+    Available: null
+  }
+
+  public chart2Obj: IStudentChart = {
+    Duration_A: 0,
+    Duration_T: 0,
+    Attended: null,
+    Available: null
+  }
+
+  public chart3Obj: IStudentChart = {
+    Duration_A: 0,
+    Duration_T: 0,
+    Attended: null,
+    Available: null
+  }
+
+  public chart4Obj: IStudentChart = {
+    Duration_A: 0,
+    Duration_T: 0,
+    Attended: null,
+    Available: null
+  }
+
   // Bar
   barChartLabels: string[] = ['Week1', 'Week2', 'Week3', 'Week4 - EOM'];
   barChartType = 'bar';
   barChartLegend = true;
-  barChartData: any[] = [{
-    data: [6, 8, 30, 25],
-    label: 'Week Hours',
+
+  barChart1Data: any[] = [{
+    data: null,
+    label: 'Total Minutes',
     borderWidth: 0
   }, {
-    data: [5, 4, 4, 2],
-    label: 'Attended Hours',
+    data: null,
+    label: 'Attended Minutes',
     borderWidth: 0
   }];
+
+  barChart2Data: any[] = [{
+    data: null,
+    label: 'Total Minutes',
+    borderWidth: 0
+  }, {
+    data: null,
+    label: 'Attended Minutes',
+    borderWidth: 0
+  }];
+
+  barChart3Data: any[] = [{
+    data: null,
+    label: 'Total Minutes',
+    borderWidth: 0
+  }, {
+    data: null,
+    label: 'Attended Minutes',
+    borderWidth: 0
+  }];
+
+  barChart4Data: any[] = [{
+    data: null,
+    label: 'Total Minutes',
+    borderWidth: 0
+  }, {
+    data: null,
+    label: 'Attended Minutes',
+    borderWidth: 0
+  }];
+
+
+
   barChartOptions: any = Object.assign({
     scaleShowVerticalLines: true,
     tooltips: {
@@ -90,7 +153,7 @@ export class StudentProfileComponent implements OnInit {
     }
   }, this.globalChartOptions);
 
-  constructor(private activatedRoute : ActivatedRoute, private studentService: StudentsService) {
+  constructor(private activatedRoute : ActivatedRoute, private studentService: StudentsService, private sessionservice: SessionsService) {
     this.activatedRoute.params.subscribe((params : Params) => {
       this.studentService.getStudent(params['StudentID']).subscribe(data => {
         this.studentObj = data;
@@ -116,8 +179,58 @@ export class StudentProfileComponent implements OnInit {
 
           }
           this.editLink = "/students/edit/" + this.studentObj.STUD_ID;
-      });
+          let today = new Date();
+          let thisMonth = today.getUTCMonth() + 1;
+          let thisYear = today.getUTCFullYear();
+          this.sessionservice.getAttendanceChart(this.studentObj.STUD_ID, thisMonth, thisYear).subscribe(
+            data => {
+              this.chart1Obj = data
+              this.barChart1Data[0]['data'] = this.chart1Obj.Available;
+              this.barChart1Data[1]['data'] = this.chart1Obj.Attended;
 
+            }
+          );
+
+          thisMonth = thisMonth - 1;
+          if(thisMonth == 0){
+            thisMonth = 12;
+            thisYear = thisYear - 1;
+          }
+          this.sessionservice.getAttendanceChart(this.studentObj.STUD_ID, thisMonth, thisYear).subscribe(
+            data => {
+              this.chart2Obj = data
+              this.barChart2Data[0]['data'] = this.chart2Obj.Available;
+              this.barChart2Data[1]['data'] = this.chart2Obj.Attended;
+            }
+          );
+
+          thisMonth = thisMonth - 1;
+          if(thisMonth == 0){
+            thisMonth = 12;
+            thisYear = thisYear - 1;
+          }
+          this.sessionservice.getAttendanceChart(this.studentObj.STUD_ID, thisMonth, thisYear).subscribe(
+            data => {
+              this.chart3Obj = data
+              this.barChart3Data[0]['data'] = this.chart3Obj.Available;
+              this.barChart3Data[1]['data'] = this.chart3Obj.Attended;
+
+            }
+          );
+
+          thisMonth = thisMonth - 1;
+          if(thisMonth == 0){
+            thisMonth = 12;
+            thisYear = thisYear - 1;
+          }
+          this.sessionservice.getAttendanceChart(this.studentObj.STUD_ID, thisMonth, thisYear).subscribe(
+            data => {
+              this.chart4Obj = data
+              this.barChart4Data[0]['data'] = this.chart4Obj.Available;
+              this.barChart4Data[1]['data'] = this.chart4Obj.Attended;
+            }
+          );
+      });
       }
     );
 
@@ -126,5 +239,6 @@ export class StudentProfileComponent implements OnInit {
   ngOnInit() {
 
   }
+tb
 
 }

@@ -106,25 +106,114 @@
 
     <div fxLayout="row wrap" fxFlex.gt-sm="50%" fxFlex.gt-xs="100">
 
-      <div fxFlex="99.5%">
-    		<mat-card>
-          <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-            Total Classes &nbsp; <span class="font-weight-bold mat-text-primary">40</span>
-            <span fxFlex></span>
-            <button mat-icon-button mat-button-sm [matMenuTriggerFor]="card1" aria-label="Open card menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-          </mat-card-subtitle>
+        <div *ngIf=this.chart1Obj.Duration_T fxFlex="99.5%">
+      		<mat-card>
+            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart1Obj.Duration_T}}</span>
+              <span fxFlex></span>
 
-    			<mat-card-content>
-            <canvas height="200" baseChart class="chart"
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [colors]="chartColors"
-              [legend]="barChartLegend"
-              [chartType]="barChartType"></canvas>
-          </mat-card-content>
-    		</mat-card>
-    	</div>
+
+            </mat-card-subtitle>
+
+            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart1Obj.Duration_A}}</span>
+              <span fxFlex></span>
+
+            </mat-card-subtitle>
+
+      			<mat-card-content>
+              <canvas height="200" baseChart class="chart"
+                [datasets]="barChart1Data"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [colors]="chartColors"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"></canvas>
+            </mat-card-content>
+      		</mat-card>
+      	</div>
+
+        <div *ngIf=this.chart2Obj.Duration_T fxFlex="99.5%">
+      		<mat-card>
+            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart2Obj.Duration_T}}</span>
+              <span fxFlex></span>
+
+
+            </mat-card-subtitle>
+
+            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart2Obj.Duration_A}}</span>
+              <span fxFlex></span>
+
+            </mat-card-subtitle>
+
+      			<mat-card-content>
+              <canvas height="200" baseChart class="chart"
+                [datasets]="barChart2Data"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [colors]="chartColors"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"></canvas>
+            </mat-card-content>
+      		</mat-card>
+      	</div>
+
+        <div *ngIf=this.chart3Obj.Duration_T fxFlex="99.5%">
+      		<mat-card>
+            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart3Obj.Duration_T}}</span>
+              <span fxFlex></span>
+
+
+            </mat-card-subtitle>
+
+            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart3Obj.Duration_A}}</span>
+              <span fxFlex></span>
+
+            </mat-card-subtitle>
+
+      			<mat-card-content>
+              <canvas height="200" baseChart class="chart"
+                [datasets]="barChart3Data"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [colors]="chartColors"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"></canvas>
+            </mat-card-content>
+      		</mat-card>
+      	</div>
+
+        <div *ngIf=this.chart4Obj.Duration_T fxFlex="99.5%">
+      		<mat-card>
+            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart4Obj.Duration_T}}</span>
+              <span fxFlex></span>
+
+
+            </mat-card-subtitle>
+
+            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart4Obj.Duration_A}}</span>
+              <span fxFlex></span>
+
+            </mat-card-subtitle>
+
+      			<mat-card-content>
+              <canvas height="200" baseChart class="chart"
+                [datasets]="barChart4Data"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [colors]="chartColors"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"></canvas>
+            </mat-card-content>
+      		</mat-card>
+      	</div>
+
+
+    </div>
 </div>

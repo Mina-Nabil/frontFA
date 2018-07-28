@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { ISession, IClass } from './interfaces'
+import { ISession, IClass, IStudentChart } from './interfaces'
 import { HttpErrorResponse } from '@angular/common/http';
 import { CalendarEvent } from 'angular-calendar';
 
@@ -17,6 +17,7 @@ export class SessionsService {
 
   private _getSessionsUrl : string = this.BASEURL + 'getSessions/';
   private _getSessionUrl : string = this.BASEURL + 'getSession/';
+  private _getAttChartUrl : string = this.BASEURL + 'getChart/';
   private _getSessionCalUrl : string = this.BASEURL + 'getSession_limit/';
   private _getAllSessionsUrl : string = this.BASEURL + 'getAllSessions/';
   private _addSessionUrl : string = this.BASEURL + 'addSession/';
@@ -51,7 +52,12 @@ export class SessionsService {
     return this.http.get<ISession>(this._editSessionUrl + sessionObj.SESS_ID ).catch(this.errorHandler);
   }
 
+  getAttendanceChart(student: number, month: number, year: number) : Observable<IStudentChart>{
+    return this.http.get<IStudentChart>(this._getAttChartUrl + student + '/' + month + '/' + year);
+  }
+
   private errorHandler(error: HttpErrorResponse){
     return Observable.throw(error.message || "Server Error");
   }
+
 }

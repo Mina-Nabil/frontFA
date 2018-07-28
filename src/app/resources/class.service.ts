@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IClass } from './interfaces';
+import { IClass, IStudentChart } from './interfaces';
 import { ChildrenItems } from '../core/menu/menu.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -16,6 +16,7 @@ export class ClassService {
 
   private _classesUrl : string = this.BASEURL + 'getClasses';
   private _classUrl : string = this.BASEURL + 'getClass/';
+  private _classChartUrl : string = this.BASEURL + 'getClassChart/';
   private _routeUrl: string = this.BASEURL + 'getClassesRoutes';
   private _addUrl: string = this.BASEURL + 'addClass';
   private _editUrl: string = this.BASEURL + 'editClass/';
@@ -28,6 +29,10 @@ export class ClassService {
 
   getClass(classID: number): Observable<IClass>{
     return this.http.get<IClass>(this._classUrl + classID).catch(this.errorHandler);
+  }
+
+  getClassChart(classID: number, month:number, year:number): Observable<IStudentChart>{
+    return this.http.get<IStudentChart>(this._classChartUrl + classID + '/' + month + '/' + year ).catch(this.errorHandler);
   }
 
   getClassesRoutes(): Observable<ChildrenItems[]> {

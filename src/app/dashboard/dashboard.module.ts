@@ -6,6 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { DashboardRoutes } from './dashboard.routing';
     MatCardModule,
     MatButtonModule,
     MatListModule,
+    ChartsModule,
     MatProgressBarModule,
     MatMenuModule,
     FlexLayoutModule

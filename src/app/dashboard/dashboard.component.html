@@ -1,1 +1,39 @@
-12/6   9 Days 
+<div fxLayout="column wrap" >
+  <div *ngFor="let clss of barChartArr" fxLayout="row wrap">
+      <div *ngFor="let chart of clss" >
+        <mat-card>
+          <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+            Chart &nbsp; <span class="font-weight-bold mat-text-primary">{{chart.title}}</span>
+            <span fxFlex></span>
+
+
+          </mat-card-subtitle>
+
+          <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+            Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{chart.Duration_T}}</span>
+            <span fxFlex></span>
+
+
+          </mat-card-subtitle>
+
+          <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+            Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{chart.Duration_A}}</span>
+            <span fxFlex></span>
+
+          </mat-card-subtitle>
+
+          <mat-card-content>
+            <canvas height="200" baseChart class="chart"
+              [datasets]="chart.chartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [colors]="chartColors"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"></canvas>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+  </div>
+
+</div>
