@@ -239,6 +239,5 @@ export class StudentProfileComponent implements OnInit {
   ngOnInit() {
 
   }
-tb
 
 }

@@ -17,6 +17,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AgmCoreModule } from '@agm/core';
 
 import { StudentsService } from './resources/students.service';
+import { AuthServiceService } from './resources/auth-service.service';
 
 import {
   MatSidenavModule,
@@ -50,6 +51,9 @@ import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { ClassService } from './resources/class.service';
 import { SessionsService } from './resources/sessions.service';
+import { AuthGuardService } from './resources/auth-gaurd.service';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { UsersService } from './resources/users.service';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -103,6 +107,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatProgressBarModule,
     FlexLayoutModule,
     BidiModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        },
+        whitelistedDomains: ['localhost:4201'],
+        blacklistedRoutes: ['localhost:4201/home/login']
+       }
+    }),
     AgmCoreModule.forRoot({apiKey: 'YOURAPIKEY'}),
     PerfectScrollbarModule
   ],
@@ -110,6 +123,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     { provide: StudentsService,           useClass: StudentsService },
     { provide: ClassService,           useClass: ClassService },
     { provide: SessionsService,           useClass: SessionsService },
+    { provide: AuthGuardService,           useClass: AuthGuardService },
+    { provide: AuthServiceService,           useClass: AuthServiceService },
+    { provide: UsersService,           useClass: UsersService },
+    { provide: JwtHelperService,           useClass: JwtHelperService },
     { provide: PERFECT_SCROLLBAR_CONFIG,  useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
   ],
   bootstrap: [AppComponent]
