@@ -87,9 +87,9 @@ barChartOptions: any = Object.assign({
 
       let index = 0;
       for(let clss of this.classesObj){
-        if(index == 0)this.barChartArr[index] = this.getClassCharts(clss.CLSS_ID, clss.CLSS_NAME);
+        if(index == 0)this.barChartArr[index] = this.getClassCharts(clss.CLSS_ID, clss.CLSS_NME);
         else
-        this.barChartArr.push(this.getClassCharts(clss.CLSS_ID, clss.CLSS_NAME));
+        this.barChartArr.push(this.getClassCharts(clss.CLSS_ID, clss.CLSS_NME));
         index++;
       }
     });

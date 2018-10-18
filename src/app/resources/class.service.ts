@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { filter, map, catchError } from 'rxjs/operators';
 import { _throw } from 'rxjs/observable/throw';
 import { HttpErrorResponse } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -40,10 +40,16 @@ export class ClassService {
   }
 
   addClass (classObj: IClass): Observable<IClass>{
+
     return this.http.post<IClass>(this._addUrl, classObj).catch(this.errorHandler);
   }
   editClass (classObj: IClass): Observable<IClass>{
-    return this.http.post<IClass>(this._editUrl + classObj.CLSS_ID, classObj).catch(this.errorHandler);
+
+      let httpHeaders = new HttpHeaders()
+         .set('Content-Type', 'application/json')
+         .set('Cache-Control', 'no-cache');
+
+    return this.http.post<IClass>(this._editUrl + classObj.CLSS_ID, classObj, {headers: httpHeaders}).catch(this.errorHandler);
   }
 
 

@@ -18,12 +18,12 @@ export interface IStudent {
   CLSS_YEAR: number,
   POST_NAME: string,
   POST_ABB: string,
-  STUD_CLSS_NAME: string
+  STUD_CLSS_NME: string
 }
 
 export interface IClass {
   CLSS_ID: number,
-  CLSS_NAME: string,
+  CLSS_NME: string,
   CLSS_DESC: string,
   CLSS_YEAR: number
 }

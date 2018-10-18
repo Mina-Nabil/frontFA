@@ -40,6 +40,7 @@ export class StudentsService {
   }
 
   editStudent(studentObj: IStudent): Observable<IStudent> {
+    console.log(studentObj)
     return this.http.post<IStudent>(this._Editurl + studentObj.STUD_ID, studentObj).catch(this.errorHandler);
   }
 

@@ -37,7 +37,7 @@ export class StudentDetailsComponent implements OnInit {
           POST_NAME: null,
           POST_ABB: null,
           CLSS_YEAR: null,
-          STUD_CLSS_NAME: null
+          STUD_CLSS_NME: null
         };
 
     public profileLink: string;
@@ -145,7 +145,7 @@ export class StudentDetailsComponent implements OnInit {
         CLSS_YEAR: null,
         POST_NAME: null,
         POST_ABB: null,
-        STUD_CLSS_NAME: null
+        STUD_CLSS_NME: null
       }
 
        if(!this.isEdit){

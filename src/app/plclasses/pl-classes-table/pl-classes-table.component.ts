@@ -15,7 +15,7 @@ export class PlClassesTableComponent implements OnInit {
   columns = [{
     name: 'ID',   prop: 'CLSS_ID', width:'20'
   },{
-    name: 'Name', prop: 'CLSS_NAME', width: '200'
+    name: 'Name', prop: 'CLSS_NME', width: '200'
   },{
     name: 'Description',  prop: 'CLSS_DESC', width: '500'
   },{
@@ -36,7 +36,7 @@ export class PlClassesTableComponent implements OnInit {
   const val = event.target.value.toLowerCase();
   // filter our data
   const temp = this.temp.filter(function(d) {
-    return d.CLSS_NAME.toLowerCase().indexOf(val) !== -1 || !val;
+    return d.CLSS_NME.toLowerCase().indexOf(val) !== -1 || !val;
   });
   // update the rows
   this.rows = temp;

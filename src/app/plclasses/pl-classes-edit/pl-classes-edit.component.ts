@@ -18,7 +18,7 @@ export class PlClassesEditComponent implements OnInit {
 
   public form: FormGroup;
   public classObj: IClass = {
-        CLSS_NAME: null,
+        CLSS_NME: null,
         CLSS_ID: null,
         CLSS_DESC: null,
         CLSS_YEAR: null
@@ -38,7 +38,7 @@ export class PlClassesEditComponent implements OnInit {
 
     this.form = this.fb.group({
     ID: [this.classObj.CLSS_ID],
-    Clnme: [this.classObj.CLSS_NAME, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
+    Clnme: [this.classObj.CLSS_NME, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
     Description: [this.classObj.CLSS_DESC, Validators.compose([Validators.required])],
     Year: [this.classObj.CLSS_YEAR, Validators.compose([Validators.required, CustomValidators.range([1998, 2100])])],
     });
@@ -50,7 +50,7 @@ export class PlClassesEditComponent implements OnInit {
       this._classService.getClass(this.classObj.CLSS_ID).subscribe(data =>
         {
           this.classObj = data;
-          this.form.controls['Clnme'].setValue(this.classObj.CLSS_NAME);
+          this.form.controls['Clnme'].setValue(this.classObj.CLSS_NME);
           this.form.controls['ID'].setValue(this.classObj.CLSS_ID);
           this.form.controls['Year'].setValue(this.classObj.CLSS_YEAR);
           this.form.controls['Description'].setValue(this.classObj.CLSS_DESC);
@@ -64,7 +64,7 @@ export class PlClassesEditComponent implements OnInit {
 
     this.classObj = {
       CLSS_ID: this.form.controls['ID'].value,
-      CLSS_NAME: this.form.controls['Clnme'].value,
+      CLSS_NME: this.form.controls['Clnme'].value,
       CLSS_DESC: this.form.controls['Description'].value,
       CLSS_YEAR: this.form.controls['Year'].value,
     }
@@ -73,7 +73,7 @@ export class PlClassesEditComponent implements OnInit {
       this._classService.addClass(this.classObj).subscribe(data => {
 
                                                             this.newclassObj = data;
-                                                            if(this.newclassObj.CLSS_NAME != this.classObj.CLSS_NAME)
+                                                            if(this.newclassObj.CLSS_NME != this.classObj.CLSS_NME)
                                                             this.declareError('Mismatch Error');
                                                             else
                                                             this.declareSuccess();
@@ -85,9 +85,9 @@ export class PlClassesEditComponent implements OnInit {
                                                            });
     }else{
       this._classService.editClass(this.classObj).subscribe(data => {
-  
+
                                                             this.newclassObj = data;
-                                                            if(this.newclassObj.CLSS_NAME != this.classObj.CLSS_NAME)
+                                                            if(this.newclassObj.CLSS_NME != this.classObj.CLSS_NME)
                                                             this.declareError('Mismatch Error');
                                                             else
                                                             this.declareSuccess();
