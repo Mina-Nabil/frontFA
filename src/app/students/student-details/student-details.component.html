@@ -142,10 +142,10 @@
           <mat-form-field style="width: 100%">
             <input matInput placeholder="Enter the Access Code" formControlName='AccessCode'>
           </mat-form-field>
-        <small *ngIf="form.controls['AccessCode'].hasError('required') && form.controls['AccessCode'].touched" class="mat-text-warn">You must enter player's parent telephone number.</small>
+        <small *ngIf="form.controls['AccessCode'].hasError('required') && form.controls['AccessCode'].touched" class="mat-text-warn">You must generate Access Code.</small>
       </div>
       <div class="mb-1">
-      <button mat-raised-button color='link' (click)=generateAccessCode() >Generate Code</button>
+      <button   type="button"  mat-raised-button color='link' (click)=generateAccessCode() >Generate Code</button>
     </div>
   </div>
 

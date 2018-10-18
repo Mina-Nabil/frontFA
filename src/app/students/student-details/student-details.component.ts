@@ -37,7 +37,7 @@ export class StudentDetailsComponent implements OnInit {
           POST_NAME: null,
           POST_ABB: null,
           CLSS_YEAR: null,
-          CLSS_NAME: null
+          STUD_CLSS_NAME: null
         };
 
     public profileLink: string;
@@ -145,11 +145,12 @@ export class StudentDetailsComponent implements OnInit {
         CLSS_YEAR: null,
         POST_NAME: null,
         POST_ABB: null,
-        CLSS_NAME: null
+        STUD_CLSS_NAME: null
       }
 
        if(!this.isEdit){
         this._studentsService.addStudent(this.studentObj).subscribe(data => {
+
                                                               this.newstudentObj = data;
                                                               if(this.newstudentObj.STUD_NAME != this.studentObj.STUD_NAME)
                                                               this.declareError('Mismatch Error');
@@ -163,6 +164,7 @@ export class StudentDetailsComponent implements OnInit {
                                                              });
       }else{
         this._studentsService.editStudent(this.studentObj).subscribe(data => {
+
                                                               this.newstudentObj = data;
                                                               if(this.newstudentObj.STUD_NAME != this.studentObj.STUD_NAME)
                                                               this.declareError('Mismatch Error');

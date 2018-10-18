@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title>Class Form</mat-card-title>
   <mat-card-subtitle>Simple form for adding/editing new classes</mat-card-subtitle>
-  <form [formGroup]="form" (ngSubmit)="modifyStudent()">
+  <form [formGroup]="form" (ngSubmit)="modifyClass()">
     <mat-card-content>
       <div fxLayout="row wrap">
 
@@ -9,11 +9,11 @@
 
         <div class="mb-1">
           <mat-form-field style="width: 100%">
-            <input matInput placeholder="Class name" formControlName='ClName'>
+            <input matInput placeholder="Class name" formControlName='Clnme' >
           </mat-form-field>
-          <small *ngIf="form.controls['ClName'].hasError('required') && form.controls['ClName'].touched" class="mat-text-warn">You must write a class name.</small>
-          <small *ngIf="form.controls['ClName'].hasError('minlength') && form.controls['ClName'].touched" class="mat-text-warn">Class name must be at least 2 characters long.</small>
-          <small *ngIf="form.controls['ClName'].hasError('maxlength') && form.controls['ClName'].touched" class="mat-text-warn">Class name cannot exceed 20 characters.</small>
+          <small *ngIf="form.controls['Clnme'].hasError('required') && form.controls['Clnme'].touched" class="mat-text-warn">You must write a class name.</small>
+          <small *ngIf="form.controls['Clnme'].hasError('minlength') && form.controls['Clnme'].touched" class="mat-text-warn">Class name must be at least 2 characters long.</small>
+          <small *ngIf="form.controls['Clnme'].hasError('maxlength') && form.controls['Clnme'].touched" class="mat-text-warn">Class name cannot exceed 20 characters.</small>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
 
       <div class="mb-1">
         <mat-form-field style="width: 100%">
-          <input matInput placeholder="Year (between 1998 and 2100)" [formControl]="form.controls['Year']">
+          <input matInput placeholder="Test Year (between 1998 and 2100)" [formControl]="form.controls['Year']">
         </mat-form-field>
         <small *ngIf="form.controls['Year'].hasError('required') && form.controls['Year'].touched" class="mat-text-warn">You must enter a year.</small>
         <small *ngIf="form.controls['Year'].hasError('range') && form.controls['Year'].touched" class="mat-text-warn">Year should be between 1998 and 2100.</small>

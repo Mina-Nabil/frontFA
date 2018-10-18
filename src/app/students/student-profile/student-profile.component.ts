@@ -32,7 +32,7 @@ export class StudentProfileComponent implements OnInit {
         POST_NAME: null,
         POST_ABB: null,
         CLSS_YEAR: null,
-        CLSS_NAME: null
+        STUD_CLSS_NAME: null
       };
 
   age: number;

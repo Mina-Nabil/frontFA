@@ -1,10 +1,3 @@
-export interface IClass {
-  CLSS_ID: number,
-  CLSS_NAME: string,
-  CLSS_DESC: string,
-  CLSS_YEAR: number
-}
-
 export interface IStudent {
   STUD_ID: number,
   STUD_NAME: string,
@@ -25,8 +18,16 @@ export interface IStudent {
   CLSS_YEAR: number,
   POST_NAME: string,
   POST_ABB: string,
-  CLSS_NAME: string
+  STUD_CLSS_NAME: string
 }
+
+export interface IClass {
+  CLSS_ID: number,
+  CLSS_NAME: string,
+  CLSS_DESC: string,
+  CLSS_YEAR: number
+}
+
 
 export interface IClassRoute {
   state :  string,

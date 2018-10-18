@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IStudent } from '../resources/interfaces';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs/Rx';
+import { filter, map, catchError } from 'rxjs/operators';
+import { _throw } from 'rxjs/observable/throw';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
