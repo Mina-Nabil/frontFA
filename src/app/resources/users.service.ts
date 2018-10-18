@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class UsersService {
 
-  private BASEURL : string = 'http://localhost/STMaryBE/Api/';
+  private BASEURL : string = 'http://18.184.195.226/STMaryBE/Api/';
 
   private _getUsersUrl : string = this.BASEURL + 'getUsers' ;
   private _loginUrl : string = this.BASEURL + 'login' ;

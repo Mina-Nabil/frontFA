@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ClassService {
 
-  private BASEURL : string = 'http://localhost/STMaryBE/Api/';
+  private BASEURL : string = 'http://18.184.195.226/STMaryBE/Api/';
 
   private _classesUrl : string = this.BASEURL + 'getClasses';
   private _classUrl : string = this.BASEURL + 'getClass/';
