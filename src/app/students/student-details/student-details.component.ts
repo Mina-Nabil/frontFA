@@ -36,7 +36,8 @@ export class StudentDetailsComponent implements OnInit {
           STUD_PRNT_TELL: null,
           POST_NAME: null,
           POST_ABB: null,
-          CLSS_YEAR: null
+          CLSS_YEAR: null,
+          CLSS_NAME: null
         };
 
     public profileLink: string;
@@ -143,7 +144,8 @@ export class StudentDetailsComponent implements OnInit {
         STUD_PREV_CLUB: this.form.controls['PrevClub'].value,
         CLSS_YEAR: null,
         POST_NAME: null,
-        POST_ABB: null
+        POST_ABB: null,
+        CLSS_NAME: null
       }
 
        if(!this.isEdit){

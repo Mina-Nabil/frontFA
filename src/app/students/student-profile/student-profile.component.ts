@@ -31,7 +31,8 @@ export class StudentProfileComponent implements OnInit {
         STUD_PRNT_TELL: null,
         POST_NAME: null,
         POST_ABB: null,
-        CLSS_YEAR: null
+        CLSS_YEAR: null,
+        CLSS_NAME: null
       };
 
   age: number;

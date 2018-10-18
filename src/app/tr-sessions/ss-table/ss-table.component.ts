@@ -40,4 +40,14 @@ export class SsTableComponent implements OnInit {
   ngOnInit() {
   }
 
+  updateFilter(event) {
+  const val = event.target.value.toLowerCase();
+  // filter our data
+  const temp = this.temp.filter(function(d) {
+    return d.SESS_DESC.toLowerCase().indexOf(val) !== -1 || !val;
+  });
+  // update the rows
+  this.rows = temp;
+  }
+
 }

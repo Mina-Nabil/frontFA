@@ -38,7 +38,7 @@ export class PlClassesEditComponent implements OnInit {
 
     this.form = this.fb.group({
     ID: [this.classObj.CLSS_ID],
-    Name: [this.classObj.CLSS_NAME, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
+    ClName: [this.classObj.CLSS_NAME, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
     Description: [this.classObj.CLSS_DESC, Validators.compose([Validators.required])],
     Year: [this.classObj.CLSS_YEAR, Validators.compose([Validators.required, CustomValidators.range([1998, 2100])])],
     });
@@ -50,7 +50,7 @@ export class PlClassesEditComponent implements OnInit {
       this._classService.getClass(this.classObj.CLSS_ID).subscribe(data =>
         {
           this.classObj = data;
-          this.form.controls['Name'].setValue(this.classObj.CLSS_NAME);
+          this.form.controls['ClName'].setValue(this.classObj.CLSS_NAME);
           this.form.controls['ID'].setValue(this.classObj.CLSS_ID);
           this.form.controls['Year'].setValue(this.classObj.CLSS_YEAR);
           this.form.controls['Description'].setValue(this.classObj.CLSS_DESC);
@@ -63,8 +63,8 @@ export class PlClassesEditComponent implements OnInit {
   modifyStudent(){
 
     this.classObj = {
-      CLSS_NAME: this.form.controls['Name'].value,
       CLSS_ID: this.form.controls['ID'].value,
+      CLSS_NAME: this.form.controls['ClName'].value,
       CLSS_DESC: this.form.controls['Description'].value,
       CLSS_YEAR: this.form.controls['Year'].value,
     }

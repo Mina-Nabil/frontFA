@@ -65,6 +65,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   minScrollbarLength: 20
 };
 
+export function jwtTokenGetter() {
+  return localStorage.getItem('token');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,9 +113,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BidiModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('token');
-        },
+        tokenGetter: jwtTokenGetter ,
         whitelistedDomains: ['localhost:4201'],
         blacklistedRoutes: ['localhost:4201/home/login']
        }

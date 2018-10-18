@@ -9,11 +9,11 @@
 
         <div class="mb-1">
           <mat-form-field style="width: 100%">
-            <input matInput placeholder="Class name" formControlName='Name'>
+            <input matInput placeholder="Class name" formControlName='ClName'>
           </mat-form-field>
-          <small *ngIf="form.controls['Name'].hasError('required') && form.controls['Name'].touched" class="mat-text-warn">You must write a class name.</small>
-          <small *ngIf="form.controls['Name'].hasError('minlength') && form.controls['Name'].touched" class="mat-text-warn">Class name must be at least 2 characters long.</small>
-          <small *ngIf="form.controls['Name'].hasError('maxlength') && form.controls['Name'].touched" class="mat-text-warn">Class name cannot exceed 20 characters.</small>
+          <small *ngIf="form.controls['ClName'].hasError('required') && form.controls['ClName'].touched" class="mat-text-warn">You must write a class name.</small>
+          <small *ngIf="form.controls['ClName'].hasError('minlength') && form.controls['ClName'].touched" class="mat-text-warn">Class name must be at least 2 characters long.</small>
+          <small *ngIf="form.controls['ClName'].hasError('maxlength') && form.controls['ClName'].touched" class="mat-text-warn">Class name cannot exceed 20 characters.</small>
         </div>
       </div>
 

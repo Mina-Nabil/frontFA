@@ -24,7 +24,8 @@ export interface IStudent {
   STUD_LGTH: number,
   CLSS_YEAR: number,
   POST_NAME: string,
-  POST_ABB: string
+  POST_ABB: string,
+  CLSS_NAME: string
 }
 
 export interface IClassRoute {
