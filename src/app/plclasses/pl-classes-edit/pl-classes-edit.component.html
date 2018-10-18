@@ -26,7 +26,7 @@
 
       <div class="mb-1">
         <mat-form-field style="width: 100%">
-          <input matInput placeholder="Test Year (between 1998 and 2100)" [formControl]="form.controls['Year']">
+          <input matInput placeholder="Year (between 1998 and 2100)" [formControl]="form.controls['Year']">
         </mat-form-field>
         <small *ngIf="form.controls['Year'].hasError('required') && form.controls['Year'].touched" class="mat-text-warn">You must enter a year.</small>
         <small *ngIf="form.controls['Year'].hasError('range') && form.controls['Year'].touched" class="mat-text-warn">Year should be between 1998 and 2100.</small>

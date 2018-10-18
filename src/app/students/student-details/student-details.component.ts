@@ -80,7 +80,7 @@ export class StudentDetailsComponent implements OnInit {
       Clss:       [this.studentObj.STUD_CLSS_ID,  Validators.compose([Validators.required])],
       ParentTel:  [this.studentObj.STUD_PRNT_TEL, Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
       ParentTel2: [this.studentObj.STUD_PRNT_TELL,Validators.compose([Validators.minLength(11), Validators.maxLength(11)])],
-      ParentName: [this.studentObj.STUD_PRNT_NAME,Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(45)])],
+      ParentName: [this.studentObj.STUD_PRNT_NAME,Validators.compose([Validators.minLength(2), Validators.maxLength(45)])],
       MentorName: [this.studentObj.STUD_MNTR_NAME],
       PrevClub:   [this.studentObj.STUD_PREV_CLUB]
       });

@@ -95,7 +95,6 @@
         <mat-form-field style="width: 100%">
           <input matInput placeholder="Player's Parent Name" formControlName='ParentName'>
         </mat-form-field>
-        <small *ngIf="form.controls['ParentName'].hasError('required') && form.controls['ParentName'].touched" class="mat-text-warn">You must enter player's parent name.</small>
         <small *ngIf="form.controls['ParentName'].hasError('minlength') && form.controls['ParentName'].touched" class="mat-text-warn">Parent's name must be at least 6 characters long.</small>
         <small *ngIf="form.controls['ParentName'].hasError('maxlength') && form.controls['ParentName'].touched" class="mat-text-warn">Parent's name cannot exceed 45 characters.</small>
       </div>
