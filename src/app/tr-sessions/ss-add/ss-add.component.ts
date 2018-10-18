@@ -44,12 +44,12 @@ export class SsAddComponent implements OnInit {
   ngOnInit() {
 
     this.form = this.fb.group({
-    ID: [this.sessionObj.SESS_ID],
-    StartDate: [this.sessionObj.SESS_STRT_DATE, Validators.compose([Validators.required, CustomValidators.date])],
-    EndDate: [this.sessionObj.SESS_END_DATE, Validators.compose([Validators.required, CustomValidators.date])],
-    Description: [this.sessionObj.SESS_DESC, Validators.compose([Validators.required])],
-    Mentor: [null, Validators.compose([Validators.required])],
-    SessClass: [null, Validators.compose([Validators.required])],
+    ID:           [this.sessionObj.SESS_ID],
+    StartDate:    [this.sessionObj.SESS_STRT_DATE, Validators.compose([Validators.required, CustomValidators.date])],
+    EndDate:      [this.sessionObj.SESS_END_DATE, Validators.compose([Validators.required, CustomValidators.date])],
+    Description:  [this.sessionObj.SESS_DESC, Validators.compose([Validators.required])],
+    Mentor:       [null, Validators.compose([Validators.required])],
+    SessClass:    [null, Validators.compose([Validators.required])],
     });
 
     this._classService.getClasses().subscribe(data =>  this.classesObj = data,

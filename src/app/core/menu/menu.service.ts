@@ -47,9 +47,14 @@ export class MenuService {
                                           name: 'Show All Players'
                                         });
                                         PLclassesRoutes.splice(0,0,{
+                                          state: 'subsc',
+                                          name: 'Subscription'
+                                        });
+                                        PLclassesRoutes.splice(0,0,{
                                           state: 'add',
                                           name: 'Add New Player'
                                         });
+
                                         MENUITEMS.push({
                                           state:  'students',
                                           name:   'Players',

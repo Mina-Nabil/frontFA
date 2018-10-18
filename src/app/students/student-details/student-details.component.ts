@@ -75,12 +75,12 @@ export class StudentDetailsComponent implements OnInit {
       Height:     [this.studentObj.STUD_LGTH,     Validators.compose([CustomValidators.range([70, 250])])],
       Position:   [this.studentObj.STUD_FAV_POS,  Validators.compose([Validators.required])],
       BarCode:    [this.studentObj.STUD_BARCODE,  Validators.compose([Validators.required])],
-      AccessCode:    [this.studentObj.STUD_BARCODE, Validators.compose([Validators.required])],
+      AccessCode:    [this.studentObj.STUD_ACCS_CODE, Validators.compose([Validators.required])],
       Clss:       [this.studentObj.STUD_CLSS_ID,  Validators.compose([Validators.required])],
       ParentTel:  [this.studentObj.STUD_PRNT_TEL, Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
       ParentTel2: [this.studentObj.STUD_PRNT_TELL,Validators.compose([Validators.minLength(11), Validators.maxLength(11)])],
       ParentName: [this.studentObj.STUD_PRNT_NAME,Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(45)])],
-      MentorName: [this.studentObj.STUD_MNTR_NAME,Validators.compose([Validators.required])],
+      MentorName: [this.studentObj.STUD_MNTR_NAME],
       PrevClub:   [this.studentObj.STUD_PREV_CLUB]
       });
       this._classService.getClasses().subscribe(data =>  this.classesObj = data,

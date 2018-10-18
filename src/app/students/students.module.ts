@@ -29,6 +29,7 @@ import { StudentsTableComponent } from './students-table/students-table.componen
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { RouterModule } from '@angular/router';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { StudentsSubscriptionComponent } from './students-subscription/students-subscription.component';
 
 @NgModule({
   imports: [
@@ -51,6 +52,6 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
     MatSelectModule,
     RouterModule.forChild(Studentroutes)
   ],
-  declarations: [StudentsTableComponent, StudentDetailsComponent, StudentProfileComponent]
+  declarations: [StudentsTableComponent, StudentDetailsComponent, StudentProfileComponent, StudentsSubscriptionComponent]
 })
 export class StudentsModule { }

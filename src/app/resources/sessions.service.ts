@@ -13,7 +13,7 @@ import { CalendarEvent } from 'angular-calendar';
 })
 export class SessionsService {
 
-  private BASEURL : string = 'http://35.177.192.89/ftballAcademy/Api/';
+  private BASEURL : string = 'http://localhost/STMaryBE/Api/';
 
   private _getSessionsUrl : string = this.BASEURL + 'getSessions/';
   private _getSessionUrl : string = this.BASEURL + 'getSession/';

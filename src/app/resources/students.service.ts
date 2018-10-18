@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class StudentsService {
 
-  private BASEURL : string = 'http://35.177.192.89/ftballAcademy/Api/';
+  private BASEURL : string = 'http://localhost/STMaryBE/Api/';
 
   private _url: string = this.BASEURL + 'getStudents';
   private _ByClassurl: string = this.BASEURL + 'getStudents/';

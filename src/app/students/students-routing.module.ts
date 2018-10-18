@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StudentsTableComponent } from './students-table/students-table.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { StudentsSubscriptionComponent } from './students-subscription/students-subscription.component';
 
 export const Studentroutes: Routes = [
   {
@@ -11,6 +12,9 @@ export const Studentroutes: Routes = [
   },{
     path: 'all',
     component: StudentsTableComponent,
+  },{
+    path: 'subsc',
+    component: StudentsSubscriptionComponent,
   },{
     path: 'profile/:StudentID',
     component: StudentProfileComponent,
