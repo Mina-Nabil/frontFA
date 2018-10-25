@@ -18,6 +18,8 @@ export interface IStudent {
   CLSS_YEAR: number,
   POST_NAME: string,
   POST_ABB: string,
+  STUD_ACTV: number,
+  STUD_CSID: string,
   STUD_CLSS_NME: string
 }
 
@@ -26,6 +28,23 @@ export interface IClass {
   CLSS_NME: string,
   CLSS_DESC: string,
   CLSS_YEAR: number
+}
+
+export interface IAttendance {
+
+  STUD_NAME : number,
+  ATTND  : number,
+  ATTND_DUR : number,
+  CLSS_NME : string,
+  STUD_ID : number,
+  SESS_ID : number
+}
+
+export interface ISubscribers {
+  STUD_NAME : string,
+  STUD_ID : number,
+  STUD_CSID : number,
+  Months : number
 }
 
 
@@ -56,6 +75,7 @@ export interface IUser {
 }
 
 export interface IStudentChart {
+  title : string,
   Duration_A: number,
   Duration_T: number,
   Attended: number[],

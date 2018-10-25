@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs/Rx';
 import { filter, map, catchError } from 'rxjs/operators';
 import { _throw } from 'rxjs/observable/throw';
-import { ISession, IClass, IStudentChart } from './interfaces'
-import { HttpErrorResponse } from '@angular/common/http';
+import { ISession, IClass, IStudentChart, IAttendance } from './interfaces'
+import { HttpErrorResponse , HttpRequest} from '@angular/common/http';
 import { CalendarEvent } from 'angular-calendar';
 
 
@@ -22,6 +22,10 @@ export class SessionsService {
   private _getAllSessionsUrl : string = this.BASEURL + 'getAllSessions/';
   private _addSessionUrl : string = this.BASEURL + 'addSession/';
   private _editSessionUrl : string = this.BASEURL + 'editSession/';
+  private _deleteSessionUrl : string = this.BASEURL + 'deleteSession/';
+  private _getAttendanceUrl : string = this.BASEURL + 'getattendancelist/';
+  private _takeAttendanceUrl : string = this.BASEURL + 'setattendancetrue/';
+  private _cancelAttendanceUrl : string = this.BASEURL + 'setattendancefalse/';
 
   constructor(private http: HttpClient) { }
 
@@ -41,6 +45,10 @@ export class SessionsService {
     return this.http.get<CalendarEvent[]>(this._getSessionCalUrl + months).catch(this.errorHandler);
   }
 
+  getAttendanceList(sessID: number) : Observable<IAttendance[]> {
+    return this.http.get<IAttendance[]>(this._getAttendanceUrl + sessID).catch(this.errorHandler);
+  }
+
   addSession(sessionObj: ISession, classes: number[]) : Observable<ISession>{
     let temp : any[] = [];
     temp.push(sessionObj);
@@ -54,6 +62,18 @@ export class SessionsService {
 
   getAttendanceChart(student: number, month: number, year: number) : Observable<IStudentChart>{
     return this.http.get<IStudentChart>(this._getAttChartUrl + student + '/' + month + '/' + year);
+  }
+
+  deleteSession(sessionid: number) {
+    return this.http.delete(this._deleteSessionUrl + sessionid);
+  }
+
+  takeAttendance(sessid : number, studid : number) : Observable<IAttendance[]> {
+    return this.http.get<IAttendance[]>(this._takeAttendanceUrl + sessid + '/' + studid).catch(this.errorHandler);
+  }
+
+  cancelAttendance(sessid : number, studid : number) : Observable<IAttendance[]> {
+    return this.http.get<IAttendance[]>(this._cancelAttendanceUrl + sessid + '/' + studid).catch(this.errorHandler);
   }
 
   private errorHandler(error: HttpErrorResponse){

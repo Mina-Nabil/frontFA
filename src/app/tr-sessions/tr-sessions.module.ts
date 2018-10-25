@@ -33,6 +33,7 @@ import { SsAddComponent } from './ss-add/ss-add.component';
 import { SsCalendarComponent } from './ss-calendar/ss-calendar.component';
 import { SsTableComponent } from './ss-table/ss-table.component';
 import { RouterModule } from '@angular/router';
+import { SsAttendanceComponent } from './ss-attendance/ss-attendance.component';
 
 
 
@@ -63,6 +64,6 @@ import { RouterModule } from '@angular/router';
     MatTabsModule,
     MatDialogModule
   ],
-  declarations: [SsAddComponent, SsCalendarComponent, SsTableComponent]
+  declarations: [SsAddComponent, SsCalendarComponent, SsTableComponent, SsAttendanceComponent]
 })
 export class TrSessionsModule { }

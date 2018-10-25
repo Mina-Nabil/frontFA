@@ -1,0 +1,49 @@
+<div fxLayout="row wrap" fxFlex="98%">
+
+  <div fxFlex="100%">
+      <mat-card>
+        <mat-card-content class="text-xs-center">
+
+          <p class="mb-1">
+            <a href="" class="block text-lg">Session</a>
+            <span class="mat-text-muted">{{this._sessionObj.SESS_DESC}} On {{ this._sessionObj.SESS_END_DATE.toString().slice(0,10) }}</span>
+          </p>
+
+          <div fxLayout="row wrap" class="mt-1 text-uppercase">
+            <div fxFlex="33.33%">
+              <h4 class="mt-0 mb-0">{{this._sessionObj.SESS_STRT_DATE.toString().slice(11,19)}}</h4>
+              <p class="mt-0 mb-0 text-md mat-text-muted">Start</p>
+            </div>
+            <div fxFlex="33.33%">
+              <h4 class="mt-0 mb-0">{{ this._sessionObj.SESS_END_DATE.toString().slice(11,19) }}</h4>
+              <p class="mt-0 mb-0 text-md mat-text-muted">End</p>
+            </div>
+            <div fxFlex="33.33%">
+             <button mat-raised-button (click)="initiateDelete()" color='accent'>Delete</button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  <div fxFlex="100%">
+      <mat-card>
+    <mat-form-field style="width: 100%" class="mb-1">
+      <input matInput placeholder="Type to filter the name column..." required (keyup)='updateFilter($event)'>
+    </mat-form-field>
+    <ngx-datatable
+    class='material selection-cell'
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [limit]="10"
+    [rows]='rows'
+    [selected]="selected"
+    [selectionType]="'cell'"
+    (select)="changeAttendance($event)">
+    </ngx-datatable>
+  </mat-card>
+</div>
+</div>

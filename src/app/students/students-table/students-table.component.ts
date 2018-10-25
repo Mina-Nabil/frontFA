@@ -14,17 +14,15 @@ export class StudentsTableComponent implements OnInit {
   temp = [];
   selected: any[] = [];
   columns = [{
-    name: 'Position',  prop: 'POST_ABB', width: '200'
+    name: 'ID',  prop: 'STUD_CSID', width: '100'
   },{
-    name: 'Name', prop: 'STUD_NAME', width: '200'
+    name: 'Name', prop: 'STUD_NAME', width: '300'
   },{
-    name: 'Player Tel.',  prop: 'STUD_TEL', width: '200'
+    name: 'BirthDate',  prop: 'STUD_BD', width: '300'
   },{
-    name: 'Parent Name',  prop: 'STUD_PRNT_NAME', width: '200'
+    name: 'Class',  prop: 'STUD_CLSS_NME', width: '100'
   },{
-    name: 'Parent Tel.',  prop: 'STUD_PRNT_TEL', width: '200'
-  },{
-    name: 'BirthDate',  prop: 'STUD_BD', width: '200'
+    name: 'Parent Tel#',  prop: 'STUD_PRNT_TEL', width: '200'
   }];
 
   constructor(private _studentsService : StudentsService, private activatedRoute: ActivatedRoute) {

@@ -37,7 +37,9 @@ export class StudentDetailsComponent implements OnInit {
           POST_NAME: null,
           POST_ABB: null,
           CLSS_YEAR: null,
-          STUD_CLSS_NME: null
+          STUD_CLSS_NME: null,
+          STUD_CSID: null,
+          STUD_ACTV: null
         };
 
     public profileLink: string;
@@ -82,6 +84,7 @@ export class StudentDetailsComponent implements OnInit {
       ParentTel2: [this.studentObj.STUD_PRNT_TELL,Validators.compose([Validators.minLength(11), Validators.maxLength(11)])],
       ParentName: [this.studentObj.STUD_PRNT_NAME,Validators.compose([Validators.minLength(2), Validators.maxLength(45)])],
       MentorName: [this.studentObj.STUD_MNTR_NAME],
+      Csid:       [this.studentObj.STUD_CSID],
       PrevClub:   [this.studentObj.STUD_PREV_CLUB]
       });
       this._classService.getClasses().subscribe(data =>  this.classesObj = data,
@@ -105,7 +108,7 @@ export class StudentDetailsComponent implements OnInit {
             this.form.controls['Telephone'].setValue(this.studentObj.STUD_TEL);
             this.form.controls['Weight'].setValue(this.studentObj.STUD_WGHT);
             this.form.controls['Height'].setValue(this.studentObj.STUD_LGTH);
-            this.form.controls['ParentTel'].setValue(this.studentObj.STUD_TEL);
+            this.form.controls['ParentTel'].setValue(this.studentObj.STUD_PRNT_TEL);
             this.form.controls['ParentTel2'].setValue(this.studentObj.STUD_PRNT_TELL);
             this.form.controls['ParentName'].setValue(this.studentObj.STUD_PRNT_NAME);
             this.form.controls['MentorName'].setValue(this.studentObj.STUD_MNTR_NAME);
@@ -114,6 +117,7 @@ export class StudentDetailsComponent implements OnInit {
             this.form.controls['AccessCode'].setValue(this.studentObj.STUD_ACCS_CODE);
             this.form.controls['Clss'].setValue(this.studentObj.STUD_CLSS_ID);
             this.form.controls['Position'].setValue(this.studentObj.STUD_FAV_POS);
+            this.form.controls['Csid'].setValue(this.studentObj.STUD_CSID);
             this.profileLink = '/students/profile/' + this.studentObj.STUD_ID;
         },error => this.declareError('Loading Error'));
 
@@ -142,9 +146,11 @@ export class StudentDetailsComponent implements OnInit {
         STUD_ACCS_CODE: this.form.controls['AccessCode'].value,
         STUD_SINCE: new Date(Date.now()),
         STUD_PREV_CLUB: this.form.controls['PrevClub'].value,
+        STUD_CSID: this.form.controls['Csid'].value,
         CLSS_YEAR: null,
         POST_NAME: null,
         POST_ABB: null,
+        STUD_ACTV: null,
         STUD_CLSS_NME: null
       }
 

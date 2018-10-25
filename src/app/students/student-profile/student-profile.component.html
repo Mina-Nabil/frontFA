@@ -42,17 +42,30 @@
       <div fxLayout="column wrap" >
         <mat-card>
           <div fxLayout="row wrap" >
-          <div fxFlex=75%>
+          <div fxFlex=65%>
           <mat-card-title>{{this.studentObj.STUD_NAME}}</mat-card-title>
           <mat-card-subtitle>Student Details</mat-card-subtitle>
         </div>
-        <div fxFlex="20%" >
+        <div fxFlex="10%" >
+        <div fxLayout="row wrap" >
           <a routerLink={{this.editLink}} fxLayoutAlign=right> <button mat-raised-button color='accent'>Edit</button></a>
           <!-- editURL bayez -->
+
+        <div *ngIf='ifActive; else elseBlock'>
+          <button mat-raised-button color='red' (click)='DeactivateStudent()' >Deactivate</button>
         </div>
+        <ng-template #elseBlock>
+          <button mat-raised-button color='green' (click)='ActivateStudent()' >Activate</button>
+        </ng-template>
+
       </div>
+    </div>
           <hr>
           <mat-list>
+            <mat-list-item>
+              <h3 matLine>Custom ID</h3>
+              <p matLine>{{this.studentObj.STUD_CSID}}</p>
+            </mat-list-item>
             <mat-list-item>
               <h3 matLine>Telephone Number</h3>
               <p matLine>{{this.studentObj.STUD_TEL}}</p>
@@ -99,112 +112,32 @@
               <p matLine>{{this.studentObj.STUD_ACCS_CODE}}</p>
             </mat-list-item>
             </mat-list>
+          </div>
         </mat-card>
-      </div>
     </div>
   </div>
 
-    <div fxLayout="row wrap" fxFlex.gt-sm="50%" fxFlex.gt-xs="100">
+    <div fxLayout="row wrap" fxFlex="99.5%" >
 
-        <div *ngIf=this.chart1Obj.Duration_T fxFlex="99.5%">
+        <div *ngFor="let chartaya of barChartDataArr" >
+        <div *ngIf=chartaya.Duration_T >
       		<mat-card>
             <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart1Obj.Duration_T}}</span>
+              Chart &nbsp; <span class="font-weight-bold mat-text-primary">{{chartaya.title}}</span> &nbsp;
+              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{chartaya.Duration_T}}</span>
               <span fxFlex></span>
-
 
             </mat-card-subtitle>
 
             <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart1Obj.Duration_A}}</span>
+              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{chartaya.Duration_A}}</span>
               <span fxFlex></span>
 
             </mat-card-subtitle>
 
       			<mat-card-content>
-              <canvas height="200" baseChart class="chart"
-                [datasets]="barChart1Data"
-                [labels]="barChartLabels"
-                [options]="barChartOptions"
-                [colors]="chartColors"
-                [legend]="barChartLegend"
-                [chartType]="barChartType"></canvas>
-            </mat-card-content>
-      		</mat-card>
-      	</div>
-
-        <div *ngIf=this.chart2Obj.Duration_T fxFlex="99.5%">
-      		<mat-card>
-            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart2Obj.Duration_T}}</span>
-              <span fxFlex></span>
-
-
-            </mat-card-subtitle>
-
-            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart2Obj.Duration_A}}</span>
-              <span fxFlex></span>
-
-            </mat-card-subtitle>
-
-      			<mat-card-content>
-              <canvas height="200" baseChart class="chart"
-                [datasets]="barChart2Data"
-                [labels]="barChartLabels"
-                [options]="barChartOptions"
-                [colors]="chartColors"
-                [legend]="barChartLegend"
-                [chartType]="barChartType"></canvas>
-            </mat-card-content>
-      		</mat-card>
-      	</div>
-
-        <div *ngIf=this.chart3Obj.Duration_T fxFlex="99.5%">
-      		<mat-card>
-            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart3Obj.Duration_T}}</span>
-              <span fxFlex></span>
-
-
-            </mat-card-subtitle>
-
-            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart3Obj.Duration_A}}</span>
-              <span fxFlex></span>
-
-            </mat-card-subtitle>
-
-      			<mat-card-content>
-              <canvas height="200" baseChart class="chart"
-                [datasets]="barChart3Data"
-                [labels]="barChartLabels"
-                [options]="barChartOptions"
-                [colors]="chartColors"
-                [legend]="barChartLegend"
-                [chartType]="barChartType"></canvas>
-            </mat-card-content>
-      		</mat-card>
-      	</div>
-
-        <div *ngIf=this.chart4Obj.Duration_T fxFlex="99.5%">
-      		<mat-card>
-            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-              Total Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart4Obj.Duration_T}}</span>
-              <span fxFlex></span>
-
-
-            </mat-card-subtitle>
-
-            <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-              Attended Hours &nbsp; <span class="font-weight-bold mat-text-primary">{{this.chart4Obj.Duration_A}}</span>
-              <span fxFlex></span>
-
-            </mat-card-subtitle>
-
-      			<mat-card-content>
-              <canvas height="200" baseChart class="chart"
-                [datasets]="barChart4Data"
+              <canvas height="300" baseChart class="chart"
+                [datasets]="chartaya"
                 [labels]="barChartLabels"
                 [options]="barChartOptions"
                 [colors]="chartColors"

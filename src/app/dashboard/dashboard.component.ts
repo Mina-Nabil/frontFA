@@ -59,11 +59,11 @@ barChartOptions: any = Object.assign({
 
   barChartTEMPLATE: any[] = [{
     data: null,
-    label: 'Total Minutes',
+    label: 'Total Hours',
     borderWidth: 0
   }, {
     data: null,
-    label: 'Attended Minutes',
+    label: 'Attended Hours',
     borderWidth: 0
   }];
 
@@ -71,6 +71,7 @@ barChartOptions: any = Object.assign({
   classesObj : IClass[];
 
   chartsObj : IStudentChart[] = [{
+    title: null,
     Attended: null,
     Available: null,
     Duration_A: null,

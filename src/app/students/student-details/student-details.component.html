@@ -9,6 +9,17 @@
 
         <div class="mb-1">
           <mat-form-field style="width: 100%">
+            <input matInput placeholder="Enter Custom ID" formControlName='Csid'>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div fxLayout="row wrap">
+        <input matInput hidden=true [formControl]="form.controls['StudentID']">
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
             <input matInput placeholder="Enter Player Full Name" formControlName='Full Name'>
           </mat-form-field>
           <small *ngIf="form.controls['Full Name'].hasError('required') && form.controls['Full Name'].touched" class="mat-text-warn">You must enter the player name.</small>

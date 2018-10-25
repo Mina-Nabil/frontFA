@@ -26,6 +26,7 @@ export class SsTableComponent implements OnInit {
 
   constructor(private _sessionService : SessionsService, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe((params: Params) => {
+
       this.classID = params['ClassID'];
       if(this.classID){
         this._sessionService.getSessions(this.classID).subscribe(data => {
@@ -48,6 +49,10 @@ export class SsTableComponent implements OnInit {
   });
   // update the rows
   this.rows = temp;
+  }
+
+  goToAttendance(event){
+      window.location.href = 'trsessions/attendance/' + event.selected[0].SSCL_SESS_ID;
   }
 
 }

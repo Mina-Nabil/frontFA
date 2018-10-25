@@ -16,10 +16,10 @@ $sidebar-width-mobile: 18rem !default;
 // Typography
 //
 $mat-font-family: Roboto, 'Helvetica Neue', sans-serif;
-$font-size-base: 0.875rem !default;
-$font-weight-base: 400 !default;
-$font-weight-medium: 500 !default;
-$font-weight-bold: 600 !default;
+$font-size-base: 0.775rem !default;
+$font-weight-base: 50 !default;
+$font-weight-medium: 400 !default;
+$font-weight-bold: 500 !default;
 
 $font-size-h1: 2.5rem !default;
 $font-size-h2: 2rem !default;
@@ -69,7 +69,7 @@ $spacers: (
     y: ($spacer-y * 3)
   )
 ) !default;
-$border-width: 1px !default;
+$border-width: 2px !default;
 
 
 // Media queries breakpoints
@@ -102,7 +102,3 @@ $container-max-widths: (
   lg: 940px,
   xl: 1140px
 ) !default;
-
-
-
-
