@@ -57,8 +57,9 @@ export class SsAttendanceComponent implements OnInit {
 
   initiateDelete(){
     if(confirm("Are you sure you want to delete this Session?")){
-      this._sessionService.deleteSession(this._sessionID).subscribe();
-      this._location.back();
+      this._sessionService.deleteSession(this._sessionID).subscribe(data => {
+        this._location.back();
+      });
     }
   }
 

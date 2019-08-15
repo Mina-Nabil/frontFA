@@ -81,3 +81,48 @@ export interface IStudentChart {
   Attended: number[],
   Available: number[]
 }
+
+export interface IPayment {
+  PYMT_ID: number,
+  STUD_NAME : string,
+  PYMT_NAME: string,
+  PYMT_DATE: string,
+  PYMT_AMNT: number,
+  PYMT_STUD: number,
+  PYMT_CLSS: number
+}
+
+export interface IClassAttendance {
+  StudentName: string,
+  session1: number,
+  session2: number,
+  session3: number,
+  session4: number,
+  session5: number,
+  session6: number,
+  session7: number,
+  session8: number,
+  session9: number,
+  session10: number,
+  session11: number,
+  session12: number,
+  session13: number,
+  session14: number,
+  session15: number,
+  session16: number,
+  session17: number,
+  session18: number,
+  session19: number,
+  session20: number,
+  session21: number,
+  session22: number,
+  session23: number,
+  session24: number,
+  session25: number,
+  session26: number
+}
+
+export interface ISessionNames {
+  SESS_ID: string,
+  Name: string
+}

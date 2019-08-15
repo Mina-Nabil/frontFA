@@ -40,6 +40,8 @@ export class MenuService {
   constructor(private _classService: ClassService) {
     let PLclassesRoutes = [];
     let SsclassesRoutes = [];
+    let AttClassesRoutes = [] ;
+    let PaymentsRoutes = [] ;
     this._classService.getClassesRoutes().subscribe(data => {
                                         PLclassesRoutes = data.slice();
                                         PLclassesRoutes.splice(0,0,{
@@ -77,6 +79,27 @@ export class MenuService {
                                           type:   'sub',
                                           icon:   'fitness_center',
                                           children: SsclassesRoutes
+                                        });
+                                        AttClassesRoutes = data.slice();
+
+                                        MENUITEMS.push({
+                                          state:  'attendance',
+                                          name:   'Attendance',
+                                          type:   'sub',
+                                          icon:   'date_range',
+                                          children: AttClassesRoutes
+                                        });
+                                        PaymentsRoutes = data.slice();
+                                        PaymentsRoutes.splice(0,0,{
+                                          state: 'insert',
+                                          name: 'Generate Payments'
+                                        });
+                                        MENUITEMS.push({
+                                          state:  'payments',
+                                          name:   'Payments',
+                                          type:   'sub',
+                                          icon:   'monetization_on',
+                                          children: PaymentsRoutes
                                         });
                                       } ,  error => console.log('Error: ', +error));
     MENUITEMS.push({

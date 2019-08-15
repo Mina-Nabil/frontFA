@@ -17,6 +17,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AgmCoreModule } from '@agm/core';
 
 import { StudentsService } from './resources/students.service';
+import { PaymentsService } from './resources/payments.service';
 import { AuthServiceService } from './resources/auth-service.service';
 
 import {
@@ -50,6 +51,7 @@ import {
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { ClassService } from './resources/class.service';
+import { AttendanceService } from './resources/attendance.service';
 import { SessionsService } from './resources/sessions.service';
 import { AuthGuardService } from './resources/auth-gaurd.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
@@ -123,8 +125,10 @@ export function jwtTokenGetter() {
   ],
   providers: [
     { provide: StudentsService,           useClass: StudentsService },
+    { provide: PaymentsService,           useClass: PaymentsService },
     { provide: ClassService,           useClass: ClassService },
     { provide: SessionsService,           useClass: SessionsService },
+    { provide: AttendanceService,           useClass: AttendanceService },
     { provide: AuthGuardService,           useClass: AuthGuardService },
     { provide: AuthServiceService,           useClass: AuthServiceService },
     { provide: UsersService,           useClass: UsersService },

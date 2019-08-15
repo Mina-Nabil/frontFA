@@ -22,6 +22,14 @@ export const AppRoutes: Routes = [{
     path: 'trsessions',
     loadChildren: './tr-sessions/tr-sessions.module#TrSessionsModule',
     canActivate: [AuthGaurdian]
+  },{
+    path: 'attendance',
+    loadChildren: './attendance/attendance.module#AttendanceModule',
+    canActivate: [AuthGaurdian]
+  },{
+    path: 'payments',
+    loadChildren: './payments/payments.module#PaymentsModule',
+    canActivate: [AuthGaurdian]
   }]
 },{
   path: '',

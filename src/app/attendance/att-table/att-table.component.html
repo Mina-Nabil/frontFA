@@ -1,0 +1,10 @@
+<mat-form-field style="width: 100%" class="mb-1">
+  <input matInput placeholder="Type to filter the name column..." required (keyup)='updateFilter($event)'>
+</mat-form-field>
+
+<ngx-datatable class="material fullscreen" [rows]="dataRows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0" [rowHeight]="50"
+  [scrollbarV]="true" [scrollbarH]="true" >
+
+  <ngx-datatable-column name="Student Name" prop="StudentName" [width]="100"></ngx-datatable-column>
+  <ngx-datatable-column *ngFor="let col of columnArray; let i = index"  name="{{col['Name']}}" prop="session{{i+1}}" [width]="100"></ngx-datatable-column>
+</ngx-datatable>
