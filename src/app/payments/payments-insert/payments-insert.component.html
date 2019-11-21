@@ -1,3 +1,91 @@
-<p>
-  payments-insert works!
-</p>
+<mat-card>
+  <mat-card-title>Generate Payments</mat-card-title>
+  <mat-card-subtitle>Generate payments to be collected in the future</mat-card-subtitle>
+  <form [formGroup]="form" (ngSubmit)="generatePayments()">
+    <mat-card-content>
+
+
+      <div fxLayout="row wrap">
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Enter Payment 'Name'.. Example: 'Tshirts Payment'" formControlName='PaymentName'>
+          </mat-form-field>
+          <small *ngIf="form.controls['PaymentName'].hasError('required') && form.controls['PaymentName'].touched" class="mat-text-warn">You must enter the payment name.</small>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Payment Amount" formControlName='Amount' type="number" step ="0.1">
+        </mat-form-field>
+        <small *ngIf="form.controls['Amount'].hasError('required') && form.controls['Amount'].touched" class="mat-text-warn">You must include a valid Amount.</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Class Name"  formControlName="clss" name='clss' (selectionChange)="classSelected()">
+            <mat-option [value]=0 >Do not generate Payments for a class</mat-option>
+            <mat-option *ngFor="let clss of classesObj" [value]="clss.CLSS_ID">
+              {{ clss.CLSS_NME }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <small *ngIf="form.controls['Student'].hasError('required') && form.controls['clss'].hasError('required') && form.controls['clss'].touched" class="mat-text-warn">You must select a target student or a class.</small>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div class="mb-1">
+        <mat-form-field style="width: 100%">
+          <mat-select placeholder="Student Name"  formControlName="Student" name='Student' (selectionChange)="studentSelected()">
+            <mat-option [value]=0 >Do not generate Payments for a specific student</mat-option>
+            <mat-option *ngFor="let student of studentsObj" [value]="student.STUD_ID">
+              {{ student.STUD_NAME }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <small *ngIf="form.controls['Student'].hasError('required') && form.controls['clss'].hasError('required') && form.controls['Student'].touched" class="mat-text-warn">You must select a target student or a class.</small>
+      </div>
+    </div>
+
+    </mat-card-content>
+    <hr>
+    <div fxLayout='row wrap'>
+    <mat-card-actions class="px-1">
+      <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">Submit</button>
+    </mat-card-actions>
+</div>
+  </form>
+
+</mat-card>
+<div *ngIf="modifyFailed" >
+<mat-card class="card-widget mat-red">
+  <div mat-card-widget>
+    <div mat-card-float-icon>
+      <mat-icon>notifications</mat-icon>
+    </div>
+    <div class="pl-0">
+      <h2 mat-card-widget-title>Oh No! {{errorMsg}}</h2>
+      <p>Add/Edit Failed</p>
+    </div>
+  </div>
+</mat-card>
+</div>
+
+<div *ngIf="modifySuccess">
+<mat-card class="card-widget mat-teal">
+  <div mat-card-widget>
+    <div mat-card-float-icon>
+      <mat-icon>local_offer</mat-icon>
+    </div>
+    <div class="pl-0">
+      <h2 mat-card-widget-title>Wow!</h2>
+      <p>Add/Edit Done</p>
+    </div>
+  </div>
+</mat-card>
+</div>

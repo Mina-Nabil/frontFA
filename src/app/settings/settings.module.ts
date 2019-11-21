@@ -1,39 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PaymentsRoutingModule } from './payments-routing.module';
-import { PaymentsTableComponent } from './payments-table/payments-table.component';
-
-
-
-//Table
-import { MatInputModule } from '@angular/material';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { PaymentsInsertComponent } from './payments-insert/payments-insert.component';
-
 //Form imports
 import {
   MatCardModule,
   MatIconModule,
   MatRadioModule,
+  MatInputModule,
   MatButtonModule,
   MatProgressBarModule,
   MatToolbarModule,
   MatMenuModule,
   MatSelectModule,
   MatListModule} from '@angular/material';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { SettingsRoutingModule } from './settings-routing.module';
+import { EditSettingsComponent } from './edit-settings/edit-settings.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    PaymentsRoutingModule,
-    MatInputModule,
-    NgxDatatableModule,
+    SettingsRoutingModule,
     MatCardModule,
     MatIconModule,
     MatRadioModule,
+    MatInputModule,
     MatButtonModule,
     MatProgressBarModule,
     MatToolbarModule,
@@ -42,8 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatListModule,
     FormsModule,
     ReactiveFormsModule
-
   ],
-  declarations: [PaymentsTableComponent, PaymentsInsertComponent]
+  declarations: [EditSettingsComponent]
 })
-export class PaymentsModule { }
+export class SettingsModule { }

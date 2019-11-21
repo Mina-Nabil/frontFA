@@ -122,6 +122,10 @@ export interface IClassAttendance {
   session26: number
 }
 
+export interface ISettings {
+  STTNG_SUB_AMNT: number,
+}
+
 export interface ISessionNames {
   SESS_ID: string,
   Name: string

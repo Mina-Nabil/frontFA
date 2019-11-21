@@ -14,7 +14,7 @@ export class PaymentsService {
     private BASEURL : string = 'http://18.184.195.226/STMaryBE/Api/';
 
     private _classPaymentsURL : string = this.BASEURL + 'getClassPayments/';
-    private _studentPaymentsURL : string = this.BASEURL + 'getStudentPayments/';
+    private _studentPaymentsURL : string = this.BASEURL + 'getStudentsPayments/';
     private _payPaymentsURL : string = this.BASEURL + 'payPayment/';
     private _addURL : string = this.BASEURL + 'insertPayment/';
 
@@ -32,8 +32,8 @@ export class PaymentsService {
       return this.http.get(this._payPaymentsURL + PaymentID).catch(this.errorHandler);
     }
 
-    addPayment(studentObj: IPayment): Observable<IPayment> {
-      return this.http.post<IPayment>(this._addURL, studentObj).catch(this.errorHandler);
+    addPayment(paymentObj: IPayment) {
+      return this.http.post(this._addURL, paymentObj).catch(this.errorHandler);
     }
 
     errorHandler(error: HttpErrorResponse){

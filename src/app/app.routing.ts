@@ -30,6 +30,10 @@ export const AppRoutes: Routes = [{
     path: 'payments',
     loadChildren: './payments/payments.module#PaymentsModule',
     canActivate: [AuthGaurdian]
+  },{
+    path: 'settings',
+    loadChildren: './settings/settings.module#SettingsModule',
+    canActivate: [AuthGaurdian]
   }]
 },{
   path: '',

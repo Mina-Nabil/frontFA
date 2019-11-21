@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Time } from '@angular/common';
-import { IStudent, IStudentChart } from '../../resources/interfaces';
+import { IStudent, IStudentChart, IPayment, IAttendance } from '../../resources/interfaces';
 import { ActivatedRoute, Params } from '@angular/router';
 import { StudentsService } from '../../resources/students.service';
 import { SessionsService } from '../../resources/sessions.service';
+import { PaymentsService } from '../../resources/payments.service';
+import { AttendanceService } from '../../resources/attendance.service';
 
 @Component({
   selector: 'app-student-profile',
@@ -37,79 +39,36 @@ export class StudentProfileComponent implements OnInit {
         STUD_ACTV: null
       };
 
+  public attendanceRows =[];
+
+  public attendanceColumns = [{
+    name: 'Name', prop: 'SESS_DESC', width: '300'
+  }, {
+    name: 'Date', prop: 'SESS_STRT_DATE', width: '300'
+  }, {
+    name: 'Attended', prop: 'ATTND', width: '300'
+
+  }];
+
+  public paymentRows = [];
+
+  public paymentColumns = [{
+    name: 'Student Name', prop: 'STUD_NAME', width: '120'
+  },{
+    name: 'Payment',   prop: 'PYMT_NAME', width:'120'
+  },{
+    name: 'Amount',   prop: 'PYMT_AMNT', width:'120'
+  },{
+    name: 'Date',  prop: 'PYMT_DATE', width: '200'
+  }];
+
   age: number;
   editLink: string;
   ifActive: boolean;
 
-  globalChartOptions: any = {
-  responsive: true,
-  legend: {
-    display: true,
-    position: 'bottom'
-  }
-};
-
-  public chartArr: IStudentChart[] = [{
-    title: null,
-    Duration_A: 0,
-    Duration_T: 0,
-    Attended: null,
-    Available: null
-  }]
 
 
-  // Bar
-  barChartLabels: string[] = ['Week1', 'Week2', 'Week3', 'Week4 - EOM'];
-  barChartType = 'bar';
-  barChartLegend = true;
-
-  barChartDataArr: any[][] = [[{
-    data: null,
-    label: 'Total Hours',
-    borderWidth: 0
-  }, {
-    data: null,
-    label: 'Attended Hours',
-    borderWidth: 0
-  }]];
-
-
-
-
-  barChartOptions: any = Object.assign({
-    scaleShowVerticalLines: true,
-    tooltips: {
-      mode: 'index',
-      intersect: false
-    },
-    responsive: true,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'rgba(0,0,0,0.02)',
-          defaultFontColor: 'rgba(0,0,0,0.02)',
-          zeroLineColor: 'rgba(0,0,0,0.02)'
-        },
-        stacked: false,
-        ticks: {
-          beginAtZero: true
-        }
-      }],
-      yAxes: [{
-        gridLines: {
-          color: 'rgba(0,0,0,0.02)',
-           defaultFontColor: 'rgba(0,0,0,0.02)',
-          zeroLineColor: 'rgba(0,0,0,0.02)'
-        },
-        stacked: false,
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }, this.globalChartOptions);
-
-  constructor(private activatedRoute : ActivatedRoute, private studentService: StudentsService, private sessionservice: SessionsService) {
+  constructor(private activatedRoute : ActivatedRoute, private studentService: StudentsService, private sessionservice: SessionsService, private _paymentService: PaymentsService, private _attendanceService: AttendanceService) {
     this.activatedRoute.params.subscribe((params : Params) => {
       this.studentService.getStudent(params['StudentID']).subscribe(data => {
         this.studentObj = data;
@@ -140,40 +99,51 @@ export class StudentProfileComponent implements OnInit {
           }
           this.editLink = "/students/edit/" + this.studentObj.STUD_ID;
 
-          //Charts Data
-          let today = new Date();
-          let thisMonth = today.getUTCMonth() + 1;
-          let thisYear = today.getUTCFullYear();
+          //Payments and Attendance Tables
+          this._paymentService.getStudentHistory(this.studentObj.STUD_ID).subscribe(data => {
+          this.paymentRows = data;
+        });
+          this._attendanceService.getAttendanceforStudent(this.studentObj.STUD_ID).subscribe(data => {
+          this.attendanceRows = data;
+        });
 
-          for(let $i = 0 ; $i < 24 ; $i++){
-          this.sessionservice.getAttendanceChart(this.studentObj.STUD_ID, thisMonth, thisYear).subscribe(
-            data => {
-            
-                this.barChartDataArr[$i] = [{
-                  data: null,
-                  label: 'Total Hours',
-                  borderWidth: 0
-                }, {
-                  data: null,
-                  label: 'Attended Hours',
-                  borderWidth: 0
-                }];
-                this.barChartDataArr[$i][0]['data'] = data.Available;
-                this.barChartDataArr[$i][1]['data'] = data.Attended;
-                this.barChartDataArr[$i]['title']   = this.getMonthStr(thisMonth) + ' ' + thisYear;
-                this.barChartDataArr[$i]['Duration_A']   = data.Duration_A;
-                this.barChartDataArr[$i]['Duration_T']   = data.Duration_T;
-                }
 
-          );
 
-          thisMonth = thisMonth - 1;
-          if(thisMonth == 0){
-            thisMonth = 12;
-            thisYear = thisYear - 1;
-          }
 
-        }
+          // //Charts Data
+          // let today = new Date();
+          // let thisMonth = today.getUTCMonth() + 1;
+          // let thisYear = today.getUTCFullYear();
+
+        //   for(let $i = 0 ; $i < 24 ; $i++){
+        //   this.sessionservice.getAttendanceChart(this.studentObj.STUD_ID, thisMonth, thisYear).subscribe(
+        //     data => {
+        //
+        //         this.barChartDataArr[$i] = [{
+        //           data: null,
+        //           label: 'Total Hours',
+        //           borderWidth: 0
+        //         }, {
+        //           data: null,
+        //           label: 'Attended Hours',
+        //           borderWidth: 0
+        //         }];
+        //         this.barChartDataArr[$i][0]['data'] = data.Available;
+        //         this.barChartDataArr[$i][1]['data'] = data.Attended;
+        //         this.barChartDataArr[$i]['title']   = this.getMonthStr(thisMonth) + ' ' + thisYear;
+        //         this.barChartDataArr[$i]['Duration_A']   = data.Duration_A;
+        //         this.barChartDataArr[$i]['Duration_T']   = data.Duration_T;
+        //         }
+        //
+        //   );
+        //
+        //   thisMonth = thisMonth - 1;
+        //   if(thisMonth == 0){
+        //     thisMonth = 12;
+        //     thisYear = thisYear - 1;
+        //   }
+        //
+        // }
         });
 
 

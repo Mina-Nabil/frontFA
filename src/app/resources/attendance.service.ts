@@ -20,6 +20,7 @@ export class AttendanceService {
 
   private _getAttendanceUrl : string = this.BASEURL + 'getAttendance/' ;
   private _getSessionsAttendanceUrl : string = this.BASEURL + 'getSessionsForAttendance/' ;
+  private _getAttendanceforStudentUrl : string = this.BASEURL + 'getAttendanceforStudent/' ;
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +31,10 @@ export class AttendanceService {
 
   getAttendance(classID: number) {
     return this.http.get<IClassAttendance[]>(this._getAttendanceUrl + classID).catch(this.errorHandler);
+  }
+
+  getAttendanceforStudent(studentID: number) {
+    return this.http.get<any[]>(this._getAttendanceforStudentUrl + studentID).catch(this.errorHandler);
   }
 
   private errorHandler(error: HttpErrorResponse){

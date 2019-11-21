@@ -101,6 +101,12 @@ export class MenuService {
                                           icon:   'monetization_on',
                                           children: PaymentsRoutes
                                         });
+                                        MENUITEMS.push({
+                                          state:  'settings',
+                                          name:   'Settings',
+                                          type:   'link',
+                                          icon:   'settings_application'
+                                        });
                                       } ,  error => console.log('Error: ', +error));
     MENUITEMS.push({
                state:   'classes',

@@ -51,6 +51,7 @@ import {
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { ClassService } from './resources/class.service';
+import { SettingsService } from './resources/settings.service';
 import { AttendanceService } from './resources/attendance.service';
 import { SessionsService } from './resources/sessions.service';
 import { AuthGuardService } from './resources/auth-gaurd.service';
@@ -126,6 +127,7 @@ export function jwtTokenGetter() {
   providers: [
     { provide: StudentsService,           useClass: StudentsService },
     { provide: PaymentsService,           useClass: PaymentsService },
+    { provide: SettingsService,           useClass: SettingsService },
     { provide: ClassService,           useClass: ClassService },
     { provide: SessionsService,           useClass: SessionsService },
     { provide: AttendanceService,           useClass: AttendanceService },

@@ -31,7 +31,6 @@ export class AttTableComponent implements OnInit {
       this._attendanceService.getAttendance(this.classID).subscribe(data => {
         this.temp2 = [...data];
         this.dataRows = data;
-        console.log(this.dataRows)
       });
 
 
